@@ -33,7 +33,7 @@ public class PlanEntrenamientoController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nombre,Duracion,Dificultad,Nivel,Descripcion")] PlanEntranamiento tdea)
+    public async Task<IActionResult> Create([Bind("Id,Nombre,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento tdea)
     {
         if (ModelState.IsValid)
         {
@@ -43,5 +43,73 @@ public class PlanEntrenamientoController : Controller
         }
         return View(tdea);
     }
-    
+    /*Detaalles*/
+     public async Task<IActionResult> Details(int? id)
+    {
+        if (id == null ||_context.PlanEntranamiento== null)
+        {
+            return NotFound();
+        }
+
+        PlanEntranamiento? planEntrena = await _context.PlanEntranamiento.FirstOrDefaultAsync(n => n.Id == id);
+        if (planEntrena == null)
+        {
+            return NotFound();
+        }
+
+        return View(planEntrena);
+
+    }
+     /*Editar*/
+    public async Task<IActionResult> Edit(int? Id)
+    {
+        if (Id == null || _context.PlanEntranamiento == null)
+        {
+            return NotFound();
+        }
+
+        var planEntrena = await _context.PlanEntranamiento.FindAsync(Id);
+        if (planEntrena == null)
+        {
+            return NotFound();
+        }
+
+        return View(planEntrena);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento planEntrena)
+    {
+        if (Id != planEntrena.Id)
+        {
+            return NotFound();
+        }
+
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                _context.Update(planEntrena);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!planasExists(planEntrena.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        return View(planEntrena);
+    }
+    private bool planasExists(int id)
+    {
+        return (_context.PlanEntranamiento?.Any(e => e.Id == id)).GetValueOrDefault();
+    }
 }

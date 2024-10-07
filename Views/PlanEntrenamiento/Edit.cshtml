@@ -1,0 +1,77 @@
+@model ProyectoPROGEND.Models.PlanEntranamiento;
+@{
+    ViewData["Title"] = "Edit";
+}
+<form asp-action="Edit">
+    <div class="form-floating mb-3">
+        <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" value="@Model.Nombre" required>
+        <label for="floatingInput">Nombre de la receta </label>
+    </div>
+    <br>
+    <div class="form-floating mb-3">
+        <input asp-for="Nombre" placeholder="" class="form-control" value="@Model.Nombre" required>
+        <label for="floatingInput">ingredientes </label>
+    </div>
+    <br>
+    <div class="form-floating mb-3">
+        <input asp-for="Descripcion" placeholder="País" class="form-control" value="@Model.Descripcion" required>
+        <label for="floatingInput">Descripcion</label>
+    </div>
+    <br>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Duracion" asp-for="Duracion"
+            style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Duracion</label>
+    </div>
+    <br>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Dificultad" asp-for="Dificultad"
+            style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Dificultad</label>
+    </div>
+    <br>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Nivel"
+            asp-for="Nivel" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Nivel</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.EdadMinRecom"
+            asp-for="EdadMinRecom" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">EdadMinRecom</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.EdadMaxRecom"
+            asp-for="EdadMaxRecom" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">EdadMaxRecom</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.PesoMaxRecom"
+            asp-for="PesoMaxRecom" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">PesoMaxRecom</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.PesoMinRecom"
+            asp-for="PesoMinRecom" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">NPesoMinRecomivel</label>
+    </div>
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.AlturaMinRecom"
+            asp-for="AlturaMinRecom" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">AlturaMinRecom</label>
+    </div>
+       <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.AlturaMaxRecom"
+            asp-for="AlturaMaxRecom" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">AlturaMaxRecom</label>
+    </div>
+
+
+    <br>
+    <button type="submit" value="Save" class="btn btn-primary">Guardar</button>
+
+</form>
+<br>
+<div>
+    <a class="btn btn-primary" asp-action="Index">Inicio</a>
+</div>

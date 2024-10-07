@@ -202,6 +202,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbkVudHJlbmFtaWVudG9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/xampp/htdocs/PROYECTO PROGEND/ProyectoPROGEND/Views/PlanEntrenamiento/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbkVudHJlbmFtaWVudG9cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/xampp/htdocs/PROYECTO PROGEND/ProyectoPROGEND/Views/PlanEntrenamiento/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbkVudHJlbmFtaWVudG9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/xampp/htdocs/PROYECTO PROGEND/ProyectoPROGEND/Views/PlanEntrenamiento/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbkVudHJlbmFtaWVudG9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

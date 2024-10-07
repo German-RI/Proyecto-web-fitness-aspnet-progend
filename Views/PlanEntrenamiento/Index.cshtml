@@ -20,7 +20,7 @@
                             <span class="badge bg-secondary">@plan.Dificultad</span>
                         </p>
                         <div class="d-grid gap-2">
-                            <a href="/TrainingPlan/Details/@plan.Id" class="btn btn-outline-primary">View Details</a>
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary">View Details</a>
                             <a href="/TrainingPlan/Select/@plan.Id" class="btn btn-success">Select Plan</a>
                         </div>
                     </div>
