@@ -1,0 +1,45 @@
+@model ProyectoPROGEND.Models.Recetas;
+@{
+    ViewData["Title"] = "Edit";
+}
+<form asp-action="Edit">
+    <div class="form-floating mb-3">
+        <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" value="@Model.Nombre" required>
+        <label for="floatingInput">Nombre de la receta </label>
+    </div>
+    <br>
+    <div class="form-floating mb-3">
+        <input asp-for="Ingredientes" placeholder="" class="form-control" value="@Model.Ingredientes" required>
+        <label for="floatingInput">ingredientes </label>
+    </div>
+    <br>
+    <div class="form-floating mb-3">
+        <input asp-for="Instrucciones" placeholder="País" class="form-control" value="@Model.Instrucciones" required>
+        <label for="floatingInput">instruciones</label>
+    </div>
+    <br>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Calorias" asp-for="Calorias"
+            style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Calorias</label>
+    </div>
+    <br>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Proteinas" asp-for="Proteinas"
+            style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Proteinas</label>
+    </div>
+    <br>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Carbohidratos"
+            asp-for="Carbohidratos" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Carbohidratos</label>
+    </div>
+    <br>
+    <button type="submit" value="Save" class="btn btn-primary">Guardar</button>
+
+</form>
+<br>
+<div>
+    <a class="btn btn-primary" asp-action="Index">Inicio</a>
+</div>

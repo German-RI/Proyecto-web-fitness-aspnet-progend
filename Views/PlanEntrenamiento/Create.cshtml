@@ -1,0 +1,34 @@
+@model ProyectoPROGEND.Models.PlanEntranamiento;
+@{
+    ViewData["Title"] = "Create";
+}
+<form asp-action="Create">
+    <div class="form-floating mb-3">
+        <input asp-for="Nombre" placeholder="" class="form-control" required>
+        <label for="floatingInput">Nombre De entrenamiento</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Duracion" placeholder="" class="form-control" required>
+        <label for="floatingInput">Duracion del Plan</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Dificultad" placeholder="" class="form-control" required>
+        <label for="floatingInput">Rango de dificultad de 1 a 5</label>
+    </div>
+      <div class="form-floating mb-3">
+        <input asp-for="Nivel" placeholder="" class="form-control" required>
+        <label for="floatingInput">Nivel de entrenamiento de 1 a 5</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" asp-for="Descripcion"
+            style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Descripcion</label>
+    </div>
+    <br>
+    <button type="submit" value="Create" class="btn btn-primary">Guardar</button>
+    
+</form>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Inicio</a>
+</div>
