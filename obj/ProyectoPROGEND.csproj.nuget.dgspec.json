@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\xampp\\htdocs\\PROYECTO PROGEND\\ProyectoPROGEND\\ProyectoPROGEND.csproj": {}
+    "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\ProyectoPROGEND.csproj": {}
   },
   "projects": {
-    "C:\\xampp\\htdocs\\PROYECTO PROGEND\\ProyectoPROGEND\\ProyectoPROGEND.csproj": {
+    "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\ProyectoPROGEND.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\xampp\\htdocs\\PROYECTO PROGEND\\ProyectoPROGEND\\ProyectoPROGEND.csproj",
+        "projectUniqueName": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\ProyectoPROGEND.csproj",
         "projectName": "ProyectoPROGEND",
-        "projectPath": "C:\\xampp\\htdocs\\PROYECTO PROGEND\\ProyectoPROGEND\\ProyectoPROGEND.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\xampp\\htdocs\\PROYECTO PROGEND\\ProyectoPROGEND\\obj\\",
+        "projectPath": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\ProyectoPROGEND.csproj",
+        "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\jason\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

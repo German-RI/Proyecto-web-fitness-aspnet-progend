@@ -9,30 +9,29 @@
     </div>
     <br>
     <div class="form-floating mb-3">
-        <input asp-for="Ingredientes" placeholder="" class="form-control" value="@Model.Ingredientes" required>
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Ingredientes" asp-for="Ingredientes"
+            style="height: 100px"></textarea>
         <label for="floatingInput">ingredientes </label>
     </div>
     <br>
     <div class="form-floating mb-3">
-        <input asp-for="Instrucciones" placeholder="País" class="form-control" value="@Model.Instrucciones" required>
+        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Instrucciones" asp-for="Instrucciones"
+            style="height: 100px"></textarea>
         <label for="floatingInput">instruciones</label>
     </div>
     <br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Calorias" asp-for="Calorias"
-            style="height: 100px"></textarea>
+        <input asp-for="Calorias" placeholder="Nombre de marca" class="form-control" value="@Model.Calorias" required>
         <label for="floatingTextarea2">Calorias</label>
     </div>
     <br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Proteinas" asp-for="Proteinas"
-            style="height: 100px"></textarea>
+        <input asp-for="Proteinas" placeholder="Nombre de marca" class="form-control" value="@Model.Proteinas" required>
         <label for="floatingTextarea2">Proteinas</label>
     </div>
     <br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Carbohidratos"
-            asp-for="Carbohidratos" style="height: 100px"></textarea>
+        <input asp-for="Carbohidratos" placeholder="Nombre de marca" class="form-control" value="@Model.Carbohidratos" required>
         <label for="floatingTextarea2">Carbohidratos</label>
     </div>
     <br>
