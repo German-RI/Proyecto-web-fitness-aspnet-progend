@@ -6,52 +6,46 @@
     <div class="form-floating mb-3">
         <input asp-for="Nombre" placeholder="" class="form-control" required>
         <label for="floatingInput">Nombre De entrenamiento</label>
-    </div>
+    </div><br>
     <div class="form-floating mb-3">
         <input asp-for="Duracion" placeholder="" class="form-control" required>
         <label for="floatingInput">Duracion del Plan</label>
-    </div>
+    </div><br>
     <div class="form-floating mb-3">
         <input asp-for="Dificultad" placeholder="" class="form-control" required>
         <label for="floatingInput">Rango de dificultad de 1 a 5</label>
-    </div>
+    </div><br>
       <div class="form-floating mb-3">
         <input asp-for="Nivel" placeholder="" class="form-control" required>
         <label for="floatingInput">Nivel de entrenamiento de 1 a 5</label>
-    </div>
+    </div><br>
     <div class="form-floating">
         <textarea class="form-control" placeholder="Leave a comment here" asp-for="Descripcion"
             style="height: 100px"></textarea>
         <label for="floatingTextarea2">Descripcion</label>
-    </div>
+    </div><br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" asp-for="EdadMinRecom"
-            style="height: 100px"></textarea>
+        <input asp-for="EdadMinRecom" placeholder="" class="form-control" required>
         <label for="floatingTextarea2">EdadMinRecom</label>
-    </div>
+    </div><br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" asp-for="EdadMaxRecom"
-            style="height: 100px"></textarea>
+        <input asp-for="EdadMaxRecom" placeholder="" class="form-control" required>
         <label for="floatingTextarea2">EdadMaxRecom</label>
-    </div>
+    </div><br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" asp-for="PesoMaxRecom"
-            style="height: 100px"></textarea>
+        <input asp-for="PesoMaxRecom" placeholder="" class="form-control" required>
         <label for="floatingTextarea2">PesoMaxRecom</label>
-    </div>
+    </div><br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" asp-for="PesoMinRecom"
-            style="height: 100px"></textarea>
+        <input asp-for="PesoMinRecom" placeholder="" class="form-control" required>
         <label for="floatingTextarea2">PesoMinRecom</label>
-    </div>
+    </div><br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" asp-for="AlturaMinRecom"
-            style="height: 100px"></textarea>
+        <input asp-for="AlturaMinRecom" placeholder="" class="form-control" required>
         <label for="floatingTextarea2">AlturaMinRecom</label>
-    </div>
+    </div> <br>
       <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" asp-for="AlturaMaxRecom"
-            style="height: 100px"></textarea>
+        <input asp-for="AlturaMaxRecom" placeholder="" class="form-control" required>
         <label for="floatingTextarea2">AlturaMaxRecom</label>
     </div>
 
@@ -60,6 +54,6 @@
     
 </form>
  <br>
-<div>
+<div><br>
     <a class="btn btn-primary" asp-action="Index">Inicio</a>
 </div>

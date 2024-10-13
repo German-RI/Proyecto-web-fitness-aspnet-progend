@@ -1,3 +1,50 @@
-@{
-    ViewData["Title"] = "Index";
-}
+@model ProyectoPROGEND.Models.PlanesYrecetasViewModel
+
+<div class="container mt-5">
+    <h1 class="mb-4">Training Plans</h1>
+    <h2>Lista de Planes</h2>
+    <div>
+        @foreach (var plan in Model.Planes)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@plan.Nombre</h5>
+                        <p class="card-text">
+                            <span class="badge bg-primary">@plan.Nivel</span>
+                            <span class="badge bg-secondary">@plan.Dificultad</span>
+                        </p>
+                        <div class="d-grid gap-2">
+                            <a asp-action="Details" asp-controller="PlanEntrenamiento" asp-route-id="@plan.Id" class="btn btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <h2>Listas de Recetas</h2>
+    <div>
+        @foreach (var item in Model.Recetas)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text">
+                            <span class="badge bg-primary">Cal: @item.Calorias</span>
+                        </p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">@item.Ingredientes</li>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <a asp-action="Details"  asp-controller="SeleccionRecetas" asp-route-id="@item.Id" class="btn btn-outline-primary">View Details</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

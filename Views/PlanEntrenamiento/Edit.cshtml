@@ -5,12 +5,7 @@
 <form asp-action="Edit">
     <div class="form-floating mb-3">
         <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" value="@Model.Nombre" required>
-        <label for="floatingInput">Nombre de la receta </label>
-    </div>
-    <br>
-    <div class="form-floating mb-3">
-        <input asp-for="Nombre" placeholder="" class="form-control" value="@Model.Nombre" required>
-        <label for="floatingInput">ingredientes </label>
+        <label for="floatingInput">Nombre del plan </label>
     </div>
     <br>
     <div class="form-floating mb-3">
@@ -19,50 +14,41 @@
     </div>
     <br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Duracion" asp-for="Duracion"
-            style="height: 100px"></textarea>
+        <input asp-for="Duracion" placeholder="País" class="form-control" value="@Model.Duracion" required>
         <label for="floatingTextarea2">Duracion</label>
     </div>
     <br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Dificultad" asp-for="Dificultad"
-            style="height: 100px"></textarea>
+        <input asp-for="Dificultad" placeholder="País" class="form-control" value="@Model.Dificultad" required>
         <label for="floatingTextarea2">Dificultad</label>
     </div>
     <br>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Nivel"
-            asp-for="Nivel" style="height: 100px"></textarea>
+        <input asp-for="Nivel" placeholder="País" class="form-control" value="@Model.Nivel" required>
         <label for="floatingTextarea2">Nivel</label>
     </div>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.EdadMinRecom"
-            asp-for="EdadMinRecom" style="height: 100px"></textarea>
+        <input asp-for="EdadMinRecom" placeholder="País" class="form-control" value="@Model.EdadMinRecom" required>
         <label for="floatingTextarea2">EdadMinRecom</label>
     </div>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.EdadMaxRecom"
-            asp-for="EdadMaxRecom" style="height: 100px"></textarea>
+        <input asp-for="EdadMaxRecom" placeholder="País" class="form-control" value="@Model.EdadMaxRecom" required>
         <label for="floatingTextarea2">EdadMaxRecom</label>
     </div>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.PesoMaxRecom"
-            asp-for="PesoMaxRecom" style="height: 100px"></textarea>
+        <input asp-for="PesoMaxRecom" placeholder="País" class="form-control" value="@Model.PesoMaxRecom" required>
         <label for="floatingTextarea2">PesoMaxRecom</label>
     </div>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.PesoMinRecom"
-            asp-for="PesoMinRecom" style="height: 100px"></textarea>
-        <label for="floatingTextarea2">NPesoMinRecomivel</label>
+        <input asp-for="PesoMinRecom" placeholder="País" class="form-control" value="@Model.PesoMinRecom" required>
+        <label for="floatingTextarea2">Introduzca el peso minimo recomendado:</label>
     </div>
       <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.AlturaMinRecom"
-            asp-for="AlturaMinRecom" style="height: 100px"></textarea>
+        <input asp-for="AlturaMinRecom" placeholder="País" class="form-control" value="@Model.AlturaMinRecom" required>
         <label for="floatingTextarea2">AlturaMinRecom</label>
     </div>
        <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.AlturaMaxRecom"
-            asp-for="AlturaMaxRecom" style="height: 100px"></textarea>
+        <input asp-for="AlturaMaxRecom" placeholder="País" class="form-control" value="@Model.AlturaMaxRecom" required>
         <label for="floatingTextarea2">AlturaMaxRecom</label>
     </div>
 
