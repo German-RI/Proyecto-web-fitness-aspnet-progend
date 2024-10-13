@@ -109,6 +109,37 @@ public class SeleccionRecetas : Controller
     {
         return (_context.Recetas?.Any(e => e.Id == id)).GetValueOrDefault();
     }
+    //Delete/
+public async Task<IActionResult> Delete(int? id)
+{
+    if (id == null || _context.Recetas == null)
+    {
+        return NotFound();
+    }
+
+    var selecreceta = await _context.Recetas
+        .FirstOrDefaultAsync(m => m.Id == id);
+    if (selecreceta == null)
+    {
+        return NotFound();
+    }
+
+    return View(selecreceta);
+}
+
+[HttpPost, ActionName("Delete")]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Delete(int id)
+{
+    var selecreceta = await _context.Recetas.FindAsync(id);
+    if (selecreceta != null)
+    {
+        _context.Recetas.Remove(selecreceta);
+        await _context.SaveChangesAsync();
+    }
+    return RedirectToAction(nameof(Index));
+}
+
 
 
 }

@@ -1,0 +1,20 @@
+@model ProyectoPROGEND.Models.PlanEntranamiento
+
+@{
+    ViewData["Title"] = "Eliminar Plan";
+}
+
+<h1>Eliminar Plan de Entrenamiento</h1>
+
+<div>
+    <h4>¿Estás seguro que deseas eliminar este plan?</h4>
+    <div>
+        <h5>@Model.Nombre</h5>
+        <p>@Model.Descripcion</p>
+    </div>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
