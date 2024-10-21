@@ -112,4 +112,35 @@ public class PlanEntrenamientoController : Controller
     {
         return (_context.PlanEntranamiento?.Any(e => e.Id == id)).GetValueOrDefault();
     }
+    //Delete/
+public async Task<IActionResult> Delete(int? id)
+{
+    if (id == null || _context.PlanEntranamiento == null)
+    {
+        return NotFound();
+    }
+
+    var planEntrena = await _context.PlanEntranamiento
+        .FirstOrDefaultAsync(m => m.Id == id);
+    if (planEntrena == null)
+    {
+        return NotFound();
+    }
+
+    return View(planEntrena);
+}
+
+[HttpPost, ActionName("Delete")]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Delete(int id)
+{
+    var planEntrena = await _context.PlanEntranamiento.FindAsync(id);
+    if (planEntrena != null)
+    {
+        _context.PlanEntranamiento.Remove(planEntrena);
+        await _context.SaveChangesAsync();
+    }
+    return RedirectToAction(nameof(Index));
+}
+
 }
