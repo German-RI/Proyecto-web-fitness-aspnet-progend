@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Aug9xLTKITYe44v/VnObwKVkq2dDOsB7zjcDI6tM1nA=",
+  "Hash": "pzIlbrINS1sSGCq/5j0ShYR30t5eZhtodsdkdWOmN5M=",
   "Source": "ProyectoPROGEND",
   "BasePath": "_content/ProyectoPROGEND",
   "Mode": "Default",
@@ -1233,6 +1233,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\favicon[defect].ico",
+      "SourceId": "ProyectoPROGEND",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\",
+      "BasePath": "_content/ProyectoPROGEND",
+      "RelativePath": "favicon[defect].ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon[defect].ico"
+    },
+    {
       "Identity": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\images\\1724646238945.png",
       "SourceId": "ProyectoPROGEND",
       "SourceType": "Discovered",
@@ -1269,6 +1288,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\1724646372806.png"
+    },
+    {
+      "Identity": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\images\\favicon.ico",
+      "SourceId": "ProyectoPROGEND",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\",
+      "BasePath": "_content/ProyectoPROGEND",
+      "RelativePath": "images/favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\favicon.ico"
     },
     {
       "Identity": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\images\\Fit.png",

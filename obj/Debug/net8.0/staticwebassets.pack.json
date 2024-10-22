@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\favicon[defect].ico",
+      "PackagePath": "staticwebassets\\favicon[defect].ico"
+    },
+    {
       "Id": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\images\\1724646238945.png",
       "PackagePath": "staticwebassets\\images\\1724646238945.png"
     },
@@ -27,6 +31,10 @@
     {
       "Id": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\images\\Fit.png",
       "PackagePath": "staticwebassets\\images\\Fit.png"
+    },
+    {
+      "Id": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\images\\favicon.ico",
+      "PackagePath": "staticwebassets\\images\\favicon.ico"
     },
     {
       "Id": "D:\\Documents\\Proyecto\\Proyecto-web-fitness-aspnet-progend\\wwwroot\\js\\site.js",
