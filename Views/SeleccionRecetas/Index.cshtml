@@ -23,7 +23,7 @@
                         </ul>
                         <div class="d-grid gap-2">
                             <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary">View Details</a>
-                            <a href="/TrainingPlan/Select/@plan.Id" class="btn btn-success">Select Receta</a>
+                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id" class="btn btn-success">Select Receta</a>
                             <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-danger">Eliminar</a>
                         </div>
                     </div>

@@ -3,17 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.AspNetCore.Identity;
 //using ProyectoPROGEND.Areas.Identity.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("AppDbContext"),
-        new MariaDbServerVersion(new Version(10,4,32)))
+        new MariaDbServerVersion(new Version(10, 4, 32)))
         .EnableDetailedErrors());
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-.AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
 
@@ -35,6 +37,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-    app.MapRazorPages();
+app.MapRazorPages();
 
 app.Run();
