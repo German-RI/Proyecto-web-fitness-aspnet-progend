@@ -156,6 +156,16 @@ public class SeleccionRecetas : Controller
         {
             return RedirectToPage("/Account/Login", new { area = "Identity" });
         }
+
+        // Verifica si el favorito ya existe 
+        var existingFavorite = await _context.UserRecetas
+            .FirstOrDefaultAsync(f => f.UserId == user.Id && f.RecetaId == Id);
+        if (existingFavorite != null)
+        {
+            TempData["Message"] = "Esta receta ya está en tus favoritos.";
+            return RedirectToAction("Index");
+        }
+
         var favorite = new UserRecetas
         {
             UserId = user.Id,
@@ -167,5 +177,8 @@ public class SeleccionRecetas : Controller
 
         return RedirectToAction("Index");
     }
+
+    
+
 
 }

@@ -21,6 +21,11 @@ namespace ProyectoPROGEND.Models
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<DatosUser>()
+                .HasOne(d => d.User)
+                .WithMany(u => u.DatosUsuarios)
+                .HasForeignKey(d => d.UserId);
+
             builder.Entity<UserRecetas>()
                 .HasOne(urf => urf.User)
                 .WithMany(u => u.RecetasUsuarios)

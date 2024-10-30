@@ -160,6 +160,15 @@ public class PlanEntrenamientoController : Controller
             return RedirectToPage("/Account/Login", new { area = "Identity" });
         }
 
+        // Verifica si el favorito ya existe 
+        var existingFavorite = await _context.UserPlanesEntrenamientos
+            .FirstOrDefaultAsync(f => f.UserId == user.Id && f.PlanEntrenamientoId == Id);
+        if (existingFavorite != null)
+        {
+            TempData["Message"] = "Este plan ya está en tus favoritos.";
+            return RedirectToAction("Index");
+        }
+
         var favorite = new UserPlanesEntrenamiento
         {
             UserId = user.Id,
@@ -171,5 +180,8 @@ public class PlanEntrenamientoController : Controller
 
         return RedirectToAction("Index");
     }
+
+    
+
 
 }

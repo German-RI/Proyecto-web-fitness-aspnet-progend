@@ -9,4 +9,5 @@ public class ApplicationUser : IdentityUser
     // Propiedades personalizadas
     public ICollection<UserRecetas> RecetasUsuarios { get; set; }
     public ICollection<UserPlanesEntrenamiento> PlanesUsuarios { get; set; }
+    public ICollection<DatosUser> DatosUsuarios { get; set; }
 }

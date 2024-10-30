@@ -16,5 +16,4 @@ public class PlanEntranamiento{
     public int AlturaMinRecom {get; set;}
     public int AlturaMaxRecom {get; set;}
 
-    
 }

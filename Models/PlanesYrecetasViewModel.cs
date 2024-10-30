@@ -7,4 +7,5 @@ public class PlanesYrecetasViewModel
 {
     public List<PlanEntranamiento> Planes { get; set; }
     public List<Recetas> Recetas { get; set; }
+    public List<DatosUser> DatosUsuario { get; set; }
 }
