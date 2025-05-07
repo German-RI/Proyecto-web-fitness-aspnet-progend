@@ -8,23 +8,26 @@
     <div>
         <a class="btn btn-primary" asp-action="Create">Añadir Recetas</a>
     </div>
+    <br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach (var plan in Model)
         {
             <div class="col">
-                <div class="card h-100">
+                <div class="card h-100 PlanEntranamien">
                     <div class="card-body">
                         <h5 class="card-title">@plan.Nombre</h5>
                         <p class="card-text">
                             <span class="badge bg-primary">Cal: @plan.Calorias</span>
+                             <span class="badge bg-primary">Carb: @plan.Carbohidratos</span>
                         </p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">@plan.Ingredientes</li>
+                        <ul class="list-group list-group-flush "> 
+                            <li class="list-group-item PlanEntranamien">@plan.Ingredientes</li>
                         </ul>
-                        <div class="d-grid gap-2">
-                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary">View Details</a>
-                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id" class="btn btn-success">Select Receta</a>
-                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-danger">Eliminar</a>
+                        <div class="btn-grup">
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View Details</a>
+                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id" class="btn btn-outline-success nav-link ">Select
+                                Receta</a>
+                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-outline-danger nav-link ">Eliminar</a>
                         </div>
                     </div>
                 </div>

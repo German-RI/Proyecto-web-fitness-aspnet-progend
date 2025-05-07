@@ -42,6 +42,11 @@ body {
   transition: color 0.3s ease, transform 0.3s ease;
   padding: 0.5rem 1rem !important;
   position: relative;
+
+}
+.btn-create{
+
+  display: inline-block;
 }
 
 .nav-link:hover {
@@ -113,9 +118,49 @@ body {
   /* Puedes añadir otras propiedades opcionales */
   color: #478490; /* Cambia el color del texto si es necesario */
 }.color-main{
-  background-color: rgba(17, 19, 19, 0.701);
+  background-image: url('https://wallpapers.com/images/hd/black-wood-background-2560-x-1600-i1f4s7jnyjprsfx3.jpg');
+  background-size: cover;        /* ajusta la imagen para que cubra todo el div */
+  background-position: center;   /* centra la imagen */
+  background-repeat: no-repeat;  /* evita que la imagen se repita */
 }
 .color-divfondo{
 
   background-color: rgba(20, 17, 17, 0.707);
+}
+.PlanEntranamien {
+  white-space: normal;
+  text-align: center;
+  word-break: break-word;
+  background-color: rgba(218, 218, 218, 0.1); /* más visible pero aún translúcido */
+  backdrop-filter: blur(10px); /* efecto borroso */
+  -webkit-backdrop-filter: blur(10px); /* compatibilidad con Safari */
+  border-radius: 10px; /* opcional: para esquinas redondeadas */
+  padding: 1rem; /* opcional: para espacio interno */
+}
+
+/*
+se define el ancho de el boton por el texto se ajusta lo mas minimo posible usar !important para forzar
+*/
+.card-body .btn{
+  display: inline-block !important;
+  width: auto !important ;
+}
+/*
+clase estilos de el grupo de botones y se defene que se separe por filas
+*/
+.btn-grup{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.colo-titulo{
+ background-color: rgba(211, 217, 220, 0.4); /* más visible pero aún translúcido */
+ backdrop-filter: blur(10px); /* efecto borroso */
+ -webkit-backdrop-filter: blur(10px); /* compatibilidad con Safari */
+ border-radius: 10px; /* opcional: para esquinas redondeadas */
+ padding: 1rem; /* opcional: para espacio interno */
+ display: inline-block !important;
+  width: auto !important ;
+  color: #f0f4f8;
 }
