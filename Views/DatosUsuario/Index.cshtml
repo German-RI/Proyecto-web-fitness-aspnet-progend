@@ -37,29 +37,29 @@
     </div><br>
     <h1 class="mb-4">Tus selecciones</h1>
     <h2>Lista de Planes</h2>
-    <div>
+    <>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            @foreach (var plan in Model.Planes)
-            {
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">@plan.Nombre</h5>
-                            <p class="card-text">
-                                <span class="badge bg-primary">@plan.Nivel</span>
-                                <span class="badge bg-secondary">@plan.Dificultad</span>
-                            </p>
-                            <div class="d-grid gap-2">
-                                <a asp-action="Details" asp-controller="PlanEntrenamiento" asp-route-id="@plan.Id"
+        @foreach (var plan in Model.Planes)
+        {
+            <div class="col">
+                <div class="card h-100 PlanEntranamien">
+                    <div class="card-body">
+                        <h5 class="card-title">@plan.Nombre</h5>
+                        <p class="card-text">
+                            <span class="badge bg-primary">@plan.Nivel</span>
+                            <span class="badge bg-secondary">@plan.Dificultad</span>
+                        </p>
+                        <div class="btn-grup">
+                            <a asp-action="Details" asp-controller="PlanEntrenamiento" asp-route-id="@plan.Id"
                                     class="btn btn-outline-primary">View Details</a>
-                                <a asp-action="RemovePlanFromFavorites" asp-route-id="@plan.Id"
+                            <a asp-action="RemovePlanFromFavorites" asp-route-id="@plan.Id"
                                     class="btn btn-danger">Quitar plan</a>
-                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-            }
+        }
         </div>
     </div>
     <br>
@@ -69,7 +69,7 @@
             @foreach (var item in Model.Recetas)
             {
                 <div class="col">
-                    <div class="card h-100">
+                    <div class="card h-100 PlanEntranamien">
                         <div class="card-body">
                             <h5 class="card-title">@item.Nombre</h5>
                             <p class="card-text">
@@ -78,7 +78,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">@item.Ingredientes</li>
                             </ul>
-                            <div class="d-grid gap-2">
+                            <div class="btn-grup">
                                 <a asp-action="Details" asp-controller="SeleccionRecetas" asp-route-id="@item.Id"
                                     class="btn btn-outline-primary">View Details</a>
                                 <a asp-action="RemoveRecetasFromFavorites" asp-route-id="@item.Id"

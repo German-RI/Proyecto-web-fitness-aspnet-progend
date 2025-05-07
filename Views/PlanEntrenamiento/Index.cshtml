@@ -3,26 +3,26 @@
     ViewData["Title"] = "Index";
 }
 <div class="container mt-5">
-    <h1 class="mb-4">Training Plans</h1>
+    <h1 class="mb-4 colo-titulo">Training Plans</h1>
     <div>
         <a class="btn btn-primary" asp-action="Create">Create Plan entrenamiento</a>
     </div><br>
-    <h1 class="mb-3">Planes Recomendados:</h1><br>
+    <h1 class="mb-3 colo-titulo">Planes Recomendados:</h1><br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach (var plan in Model.RecomendacionPlanes) 
         {
             <div class="col">
-                <div class="card h-100">
+                <div class="card h-100 PlanEntranamien">
                     <div class="card-body">
                         <h5 class="card-title">@plan.Nombre</h5>
                         <p class="card-text">
                             <span class="badge bg-primary">Nivel: @plan.Nivel</span>
                             <span class="badge bg-secondary">Dificultad: @plan.Dificultad</span>
                         </p>
-                        <div class="d-grid gap-2">
-                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary">View Details</a>
-                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id" class="btn btn-success">Select Plan</a>
-                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-danger">Eliminar</a>
+                        <div class="btn-grup">
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link">View Details</a>
+                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id" class="btn btn-outline-success nav-link">Select Plan</a>
+                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-outline-danger nav-link">Eliminar</a>
 
                         </div>
                     </div>
@@ -31,22 +31,22 @@
         }
     </div>
     <br>
-    <h1 class="mb-3">Todos los planes:</h1><br>
+    <h1 class="mb-3 colo-titulo">Todos los planes:</h1><br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach (var plan in Model.Planes)
         {
             <div class="col">
-                <div class="card h-100">
+                <div class="card h-100 PlanEntranamien ">
                     <div class="card-body">
                         <h5 class="card-title">@plan.Nombre</h5>
                         <p class="card-text">
                             <span class="badge bg-primary">Nivel: @plan.Nivel</span>
                             <span class="badge bg-secondary">Dificultad: @plan.Dificultad</span>
                         </p>
-                        <div class="d-grid gap-2">
-                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary">View Details</a>
-                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id" class="btn btn-success">Select Plan</a>
-                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-danger">Eliminar</a>
+                        <div class="btn-grup">
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View Details</a>
+                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id"class="btn btn-outline-success nav-link">Select Plan</a>
+                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-outline-danger nav-link">Eliminar</a>
 
                         </div>
                     </div>
