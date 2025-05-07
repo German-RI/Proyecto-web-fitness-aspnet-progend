@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ProyectoPROGEND.Controllers;
 public class PlanEntrenamientoController : Controller
@@ -26,10 +27,42 @@ public class PlanEntrenamientoController : Controller
     }
     public async Task<IActionResult> Index()
     {
-        List<PlanEntranamiento> tdea = await _context.PlanEntranamiento.ToListAsync();
-        return View(tdea);
+        if (!User.Identity.IsAuthenticated)
+        {
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+        {
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
+
+        var userDatos = await _context.DatosUsers
+            .OrderByDescending(d => d.RecordDate)
+            .FirstOrDefaultAsync(d => d.UserId == user.Id);
+        var recomendaciones = new List<PlanEntranamiento>();
+        if (userDatos != null)
+        {
+            recomendaciones = await _context.PlanEntranamiento
+                .Where(p => userDatos.Peso >= p.PesoMinRecom
+                    && userDatos.Peso <= p.PesoMaxRecom
+                    && userDatos.Altura >= p.AlturaMinRecom
+                    && userDatos.Altura <= p.AlturaMaxRecom
+                    && userDatos.RecordDate.Year - user.FechaNacimiento.Year >= p.EdadMinRecom
+                    && userDatos.RecordDate.Year - user.FechaNacimiento.Year <= p.EdadMaxRecom)
+                .ToListAsync();
+        }
+        var viewModel = new PlanesYrecetasViewModel 
+        { 
+            Planes = await _context.PlanEntranamiento.ToListAsync(),
+            RecomendacionPlanes = recomendaciones 
+        }; 
+            
+        return View(viewModel);
 
     }
+
+    [Authorize(Roles = "ADMIN")]
     public IActionResult Create()
     {
         return View();
@@ -65,6 +98,7 @@ public class PlanEntrenamientoController : Controller
 
     }
     /*Editar*/
+    [Authorize(Roles = "ADMIN")]
     public async Task<IActionResult> Edit(int? Id)
     {
         if (Id == null || _context.PlanEntranamiento == null)
@@ -117,6 +151,7 @@ public class PlanEntrenamientoController : Controller
         return (_context.PlanEntranamiento?.Any(e => e.Id == id)).GetValueOrDefault();
     }
     //Delete/
+    [Authorize(Roles = "ADMIN")]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null || _context.PlanEntranamiento == null)
@@ -160,6 +195,15 @@ public class PlanEntrenamientoController : Controller
             return RedirectToPage("/Account/Login", new { area = "Identity" });
         }
 
+        // Verifica si el favorito ya existe 
+        var existingFavorite = await _context.UserPlanesEntrenamientos
+            .FirstOrDefaultAsync(f => f.UserId == user.Id && f.PlanEntrenamientoId == Id);
+        if (existingFavorite != null)
+        {
+            TempData["Message"] = "Este plan ya está en tus favoritos.";
+            return RedirectToAction("Index");
+        }
+
         var favorite = new UserPlanesEntrenamiento
         {
             UserId = user.Id,
@@ -171,5 +215,8 @@ public class PlanEntrenamientoController : Controller
 
         return RedirectToAction("Index");
     }
+
+
+
 
 }

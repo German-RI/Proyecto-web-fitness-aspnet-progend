@@ -98,17 +98,14 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
             // Campos adicionales
-           /* [Required]
-            [Range(1, 120)]
-            public int Edad { get; set; }
-
             [Required]
-            [Range(0, 300)]
-            public float Peso { get; set; }
-
+            [DataType(DataType.Date)]
+            [Display(Name = "Fecha de Nacimiento")] 
+            public DateTime FechaNacimiento { get; set; }
+            
             [Required]
-            [Range(0, 3)]
-            public float Altura { get; set; }*/
+            [Display(Name = "Sexo")] 
+            public string Sexo { get; set; }
         }
 
 
@@ -124,11 +121,16 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                
+
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                // Asignar los nuevos campos 
+                user.FechaNacimiento = Input.FechaNacimiento; 
+                user.Sexo = Input.Sexo;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

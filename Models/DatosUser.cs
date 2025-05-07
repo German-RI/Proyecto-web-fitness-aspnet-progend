@@ -10,8 +10,6 @@ public class DatosUser{
         public float Peso {get;set;}
         public float Altura {get;set;}
         public DateTime RecordDate {get;set;}
-        
-        /* ref a su usuario
-                pubic int IdUser {get;set;}
-        */
+        public string UserId { get; set; } 
+        public ApplicationUser User { get; set; }
 }
