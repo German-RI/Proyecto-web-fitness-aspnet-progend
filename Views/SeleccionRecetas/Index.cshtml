@@ -1,4 +1,4 @@
-@model List<ProyectoPROGEND.Models.Recetas>
+@model ProyectoPROGEND.Models.PlanesYrecetasViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,23 +7,49 @@
 
     <div>
         <a class="btn btn-primary" asp-action="Create">Añadir Recetas</a>
-    </div>
+    </div><br>
+    <h1 class="mb-3">Recetas Recomendadas:</h1><br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @foreach (var plan in Model)
+        @foreach (var plan in Model.RecomendacionRecetas)
         {
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">@plan.Nombre</h5>
                         <p class="card-text">
-                            <span class="badge bg-primary">Cal: @plan.Calorias</span>
+                            <span class="badge bg-primary">KCal: @plan.Calorias</span><br>
+                            <span class="badge bg-primary">Proteinas: @plan.Proteinas</span><br>
+                            <span class="badge bg-primary">Carbohidratos: @plan.Carbohidratos</span>
                         </p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">@plan.Ingredientes</li>
-                        </ul>
                         <div class="d-grid gap-2">
                             <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary">View Details</a>
-                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id" class="btn btn-success">Select Receta</a>
+                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id" class="btn btn-success">Select
+                                Receta</a>
+                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br>
+    <h1 class="mb-3">Todas las Recetas:</h1><br>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var plan in Model.Recetas)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@plan.Nombre</h5>
+                        <p class="card-text">
+                            <span class="badge bg-primary">KCal: @plan.Calorias</span><br>
+                            <span class="badge bg-primary">Proteinas: @plan.Proteinas</span><br>
+                            <span class="badge bg-primary">Carbohidratos: @plan.Carbohidratos</span>
+                        </p>
+                        <div class="d-grid gap-2">
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary">View Details</a>
+                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id" class="btn btn-success">Select
+                                Receta</a>
                             <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-danger">Eliminar</a>
                         </div>
                     </div>

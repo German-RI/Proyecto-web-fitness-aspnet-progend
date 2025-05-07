@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+using System.Diagnostics;
 using ProyectoPROGEND.Models;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
@@ -15,6 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         .EnableDetailedErrors());
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
@@ -31,6 +34,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
