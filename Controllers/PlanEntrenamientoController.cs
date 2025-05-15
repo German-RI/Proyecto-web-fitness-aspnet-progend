@@ -52,28 +52,60 @@ public class PlanEntrenamientoController : Controller
                     && userDatos.RecordDate.Year - user.FechaNacimiento.Year <= p.EdadMaxRecom)
                 .ToListAsync();
         }
-        var viewModel = new PlanesYrecetasViewModel 
-        { 
+        var viewModel = new PlanesYrecetasViewModel
+        {
             Planes = await _context.PlanEntranamiento.ToListAsync(),
-            RecomendacionPlanes = recomendaciones 
-        }; 
-            
+            RecomendacionPlanes = recomendaciones
+        };
+
         return View(viewModel);
 
     }
 
-    [Authorize(Roles = "ADMIN")]
+    /*Crear plan de entrenamiento*/
+    [Authorize(Roles = "ADMIN")]//Se autoriza solo al Administrador (por ahora)
     public IActionResult Create()
     {
-        return View();
+        return View();//retorna la vista para introducir datos
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nombre,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento tdea)
+    public async Task<IActionResult> Create([Bind("Id,Nombre,Image_Portada,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento tdea, IFormFile? imagen)
     {
         if (ModelState.IsValid)
         {
+            if (imagen != null && imagen.Length > 0)
+            {
+                // Crear carpeta si no existe
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagenes");
+                if (!Directory.Exists(folderPath))
+                    Directory.CreateDirectory(folderPath);
+
+                /*if (!string.IsNullOrEmpty(tdea.Image_Portada))
+                {
+                    var rutaAntigua = Path.Combine(folderPath, tdea.Image_Portada);
+                    if (System.IO.File.Exists(rutaAntigua))
+                    {
+                        System.IO.File.Delete(rutaAntigua);
+                    }
+                }*/
+
+                var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagen.FileName); // nombre único
+                var ruta = Path.Combine(folderPath, nombreArchivo);
+
+                using (var stream = new FileStream(ruta, FileMode.Create))
+                {
+                    await imagen.CopyToAsync(stream);
+                }
+
+                tdea.Image_Portada = nombreArchivo;
+            }
+            else
+            {
+                // Mantén el valor actual de Image_Portada si no se sube una nueva imagen
+                _context.Entry(tdea).Property(r => r.Image_Portada).IsModified = false;
+            }
             _context.Add(tdea);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -117,7 +149,7 @@ public class PlanEntrenamientoController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento planEntrena)
+    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Image_Portada,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento planEntrena, IFormFile? imagen)
     {
         if (Id != planEntrena.Id)
         {
@@ -128,6 +160,38 @@ public class PlanEntrenamientoController : Controller
         {
             try
             {
+                if (imagen != null && imagen.Length > 0)
+                {
+                    // Crear carpeta si no existe
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagenes");
+                    if (!Directory.Exists(folderPath))
+                        Directory.CreateDirectory(folderPath);
+
+                    if (!string.IsNullOrEmpty(planEntrena.Image_Portada))
+                    {
+                        var rutaAntigua = Path.Combine(folderPath, planEntrena.Image_Portada);
+                        if (System.IO.File.Exists(rutaAntigua))
+                        {
+                            System.IO.File.Delete(rutaAntigua);
+                        }
+                    }
+
+                    var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagen.FileName); // nombre único
+                    var ruta = Path.Combine(folderPath, nombreArchivo);
+
+                    using (var stream = new FileStream(ruta, FileMode.Create))
+                    {
+                        await imagen.CopyToAsync(stream);
+                    }
+
+                    planEntrena.Image_Portada = nombreArchivo;
+                }
+                else
+                {
+                    // Mantén el valor actual de Image_Portada si no se sube una nueva imagen
+                    _context.Entry(planEntrena).Property(r => r.Image_Portada).IsModified = false;
+                }
+
                 _context.Update(planEntrena);
                 await _context.SaveChangesAsync();
             }

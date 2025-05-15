@@ -2,12 +2,20 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<form asp-action="Edit">
+<form asp-action="Edit" enctype="multipart/form-data">
     <div class="form-floating mb-3">
         <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" value="@Model.Nombre" required>
         <label for="floatingInput">Nombre del plan </label>
     </div>
     <br>
+    <div class="form-floating mb-3">
+        <label>Imagen de la receta</label>
+        <img src="~/imagenes/@Model.Image_Portada" class="receta-imagen" alt="img_portada">
+        <input type="hidden" name="Image_Portada" value="@Model.Image_Portada" />
+        <br>
+        <input type="file" name="imagen" class="form-control"/>
+        <label for="floatingInput">Subir Imagen</label>
+    </div><br>
     <div class="form-floating mb-3">
         <input asp-for="Descripcion" placeholder="País" class="form-control" value="@Model.Descripcion" required>
         <label for="floatingInput">Descripcion</label>

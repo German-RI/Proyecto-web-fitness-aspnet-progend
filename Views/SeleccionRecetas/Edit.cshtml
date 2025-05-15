@@ -2,36 +2,44 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<form asp-action="Edit">
+<form asp-action="Edit" enctype="multipart/form-data">
     <div class="form-floating mb-3">
-        <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" value="@Model.Nombre" required>
+        <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" required>
         <label for="floatingInput">Nombre de la receta </label>
     </div>
     <br>
     <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Ingredientes" asp-for="Ingredientes"
+        <label>Imagen de la receta</label>
+        <img src="~/imagenes/@Model.Image_Portada" class="receta-imagen" alt="img_portada">
+        <input type="hidden" name="Image_Portada" value="@Model.Image_Portada" />
+        <br>
+        <input type="file" name="imagen" class="form-control"/>
+        <label for="floatingInput">Subir Imagen</label>
+    </div><br>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Leave a comment here"  asp-for="Ingredientes"
             style="height: 100px"></textarea>
         <label for="floatingInput">ingredientes </label>
     </div>
     <br>
     <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave a comment here" value="@Model.Instrucciones" asp-for="Instrucciones"
+        <textarea class="form-control" placeholder="Leave a comment here"  asp-for="Instrucciones"
             style="height: 100px"></textarea>
         <label for="floatingInput">instruciones</label>
     </div>
     <br>
     <div class="form-floating">
-        <input asp-for="Calorias" placeholder="Nombre de marca" class="form-control" value="@Model.Calorias" required>
+        <input asp-for="Calorias" placeholder="Nombre de marca" class="form-control"  required>
         <label for="floatingTextarea2">Calorias</label>
     </div>
     <br>
     <div class="form-floating">
-        <input asp-for="Proteinas" placeholder="Nombre de marca" class="form-control" value="@Model.Proteinas" required>
+        <input asp-for="Proteinas" placeholder="Nombre de marca" class="form-control"  required>
         <label for="floatingTextarea2">Proteinas</label>
     </div>
     <br>
     <div class="form-floating">
-        <input asp-for="Carbohidratos" placeholder="Nombre de marca" class="form-control" value="@Model.Carbohidratos" required>
+        <input asp-for="Carbohidratos" placeholder="Nombre de marca" class="form-control"  required>
         <label for="floatingTextarea2">Carbohidratos</label>
     </div>
     <br>

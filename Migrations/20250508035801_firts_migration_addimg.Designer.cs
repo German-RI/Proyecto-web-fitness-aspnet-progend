@@ -12,8 +12,8 @@ using ProyectoPROGEND.Models;
 namespace ProyectoPROGEND.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241030211145_AddDatosUser")]
-    partial class AddDatosUser
+    [Migration("20250508035801_firts_migration_addimg")]
+    partial class firts_migration_addimg
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -180,6 +180,9 @@ namespace ProyectoPROGEND.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -204,6 +207,10 @@ namespace ProyectoPROGEND.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -288,6 +295,9 @@ namespace ProyectoPROGEND.Migrations
                     b.Property<int>("EdadMinRecom")
                         .HasColumnType("int");
 
+                    b.Property<string>("Image_Portada")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("Nivel")
                         .HasColumnType("int");
 
@@ -340,6 +350,9 @@ namespace ProyectoPROGEND.Migrations
 
                     b.Property<float>("Carbohidratos")
                         .HasColumnType("float");
+
+                    b.Property<string>("Image_Portada")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Ingredientes")
                         .HasColumnType("longtext");

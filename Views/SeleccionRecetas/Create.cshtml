@@ -2,10 +2,13 @@
 @{
     ViewData["Title"] = "Create";
 }
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
     <div class="form-floating mb-3">
         <input asp-for="Nombre" placeholder="" class="form-control" required>
         <label for="floatingInput">Nombre De la Receta</label>
+    </div><br>
+    <div class="form-floating mb-3">
+        <input type="file" name="imagen" class="form-control" required/>
     </div><br>
     <div class="form-floating">
         <textarea class="form-control" placeholder="Leave a comment here" asp-for="Ingredientes"
