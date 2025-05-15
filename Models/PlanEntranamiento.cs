@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 public class PlanEntranamiento{
     public int Id {get;set;}
     public string? Nombre {get;set;}
+    public string? Image_Portada {get;set;}
     public string? Descripcion{get;set;}
     public string? Duracion{get;set;}
     public int Dificultad{get;set;}

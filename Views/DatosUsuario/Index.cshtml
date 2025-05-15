@@ -37,17 +37,17 @@
     </div><br>
     <h1 class="mb-4">Tus selecciones</h1>
     <h2>Lista de Planes</h2>
-    <>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach (var plan in Model.Planes)
         {
             <div class="col">
                 <div class="card h-100 PlanEntranamien">
+                    <img src="~/imagenes/@plan.Image_Portada" class="card-img-top receta-imagen" alt="img_portada">
                     <div class="card-body">
                         <h5 class="card-title">@plan.Nombre</h5>
                         <p class="card-text">
-                            <span class="badge bg-primary">@plan.Nivel</span>
-                            <span class="badge bg-secondary">@plan.Dificultad</span>
+                            <span class="badge bg-primary">Nivel: @plan.Nivel</span>
+                            <span class="badge bg-secondary">Dificultad: @plan.Dificultad</span>
                         </p>
                         <div class="btn-grup">
                             <a asp-action="Details" asp-controller="PlanEntrenamiento" asp-route-id="@plan.Id"
@@ -70,14 +70,15 @@
             {
                 <div class="col">
                     <div class="card h-100 PlanEntranamien">
+                        <img src="~/imagenes/@item.Image_Portada" class="card-img-top receta-imagen" alt="img_portada">
                         <div class="card-body">
                             <h5 class="card-title">@item.Nombre</h5>
                             <p class="card-text">
-                                <span class="badge bg-primary">Cal: @item.Calorias</span>
+                                <span class="badge bg-primary">KCal: @item.Calorias</span><br>
+                                <span class="badge bg-primary">Proteinas: @item.Proteinas</span><br>
+                                <span class="badge bg-primary">Carbohidratos: @item.Carbohidratos</span>
+                                <li class="list-group-item PlanEntranamien">@item.Ingredientes</li>
                             </p>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">@item.Ingredientes</li>
-                            </ul>
                             <div class="btn-grup">
                                 <a asp-action="Details" asp-controller="SeleccionRecetas" asp-route-id="@item.Id"
                                     class="btn btn-outline-primary">View Details</a>

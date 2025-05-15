@@ -292,6 +292,9 @@ namespace ProyectoPROGEND.Migrations
                     b.Property<int>("EdadMinRecom")
                         .HasColumnType("int");
 
+                    b.Property<string>("Image_Portada")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("Nivel")
                         .HasColumnType("int");
 
@@ -344,6 +347,9 @@ namespace ProyectoPROGEND.Migrations
 
                     b.Property<float>("Carbohidratos")
                         .HasColumnType("float");
+
+                    b.Property<string>("Image_Portada")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Ingredientes")
                         .HasColumnType("longtext");

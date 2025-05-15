@@ -49,7 +49,7 @@ public class SeleccionRecetas : Controller
         else
         {
             // Fórmula de Mifflin-St Jeor considerando el sexo del usuario 
-            double bmr; 
+            double bmr;
             if (user.Sexo == "M")
             {
                 bmr = 10 * userDatos.Peso + 6.25 * userDatos.Altura - 5 * (DateTime.Today.Year - user.FechaNacimiento.Year) + 5;
@@ -84,10 +84,28 @@ public class SeleccionRecetas : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nombre,Ingredientes,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas tdea)
+    public async Task<IActionResult> Create([Bind("Id,Nombre,Ingredientes,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas tdea, IFormFile imagen)
     {
         if (ModelState.IsValid)
         {
+            if (imagen != null && imagen.Length > 0)
+            {
+                // Crear carpeta si no existe
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagenes");
+                if (!Directory.Exists(folderPath))
+                    Directory.CreateDirectory(folderPath);
+
+                var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagen.FileName); // nombre único
+                var ruta = Path.Combine(folderPath, nombreArchivo);
+
+                using (var stream = new FileStream(ruta, FileMode.Create))
+                {
+                    await imagen.CopyToAsync(stream);
+                }
+
+                tdea.Image_Portada = nombreArchivo;
+            }
+
             _context.Add(tdea);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -131,17 +149,60 @@ public class SeleccionRecetas : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Ingredientes,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas recetas)
+    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Image_Portada,Ingredientes,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas recetas, IFormFile? imagen)
     {
         if (Id != recetas.Id)
         {
             return NotFound();
         }
 
+        if (!ModelState.IsValid)
+        {
+            // Inspecciona los errores de validación
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                Console.WriteLine(error); // O usa un logger
+            }
+            return View(recetas); // Devuelve la vista con los errores
+        }
+
         if (ModelState.IsValid)
         {
             try
             {
+                if (imagen != null && imagen.Length > 0)
+                {
+                    // Crear carpeta si no existe
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagenes");
+                    if (!Directory.Exists(folderPath))
+                        Directory.CreateDirectory(folderPath);
+
+                    if (!string.IsNullOrEmpty(recetas.Image_Portada))
+                    {
+                        var rutaAntigua = Path.Combine(folderPath, recetas.Image_Portada);
+                        if (System.IO.File.Exists(rutaAntigua))
+                        {
+                            System.IO.File.Delete(rutaAntigua);
+                        }
+                    }
+
+                    var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagen.FileName); // nombre único
+                    var ruta = Path.Combine(folderPath, nombreArchivo);
+
+                    using (var stream = new FileStream(ruta, FileMode.Create))
+                    {
+                        await imagen.CopyToAsync(stream);
+                    }
+
+                    recetas.Image_Portada = nombreArchivo;
+                }
+                else
+                {
+                    // Mantén el valor actual de Image_Portada si no se sube una nueva imagen
+                    _context.Entry(recetas).Property(r => r.Image_Portada).IsModified = false;
+                }
+
                 _context.Update(recetas);
                 await _context.SaveChangesAsync();
             }
@@ -158,6 +219,7 @@ public class SeleccionRecetas : Controller
             }
             return RedirectToAction(nameof(Index));
         }
+
         return View(recetas);
     }
     private bool RecetasExists(int id)
