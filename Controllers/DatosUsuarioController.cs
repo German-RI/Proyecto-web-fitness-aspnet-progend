@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
 namespace ProyectoPROGEND.Controllers;
+
 public class DatosUsuariocontroller : Controller
 {
     private readonly UserManager<ApplicationUser> _userManager;
@@ -50,9 +51,9 @@ public class DatosUsuariocontroller : Controller
         var today = DateTime.Today;
         var datosUsuario = await _context.DatosUsers
             .Where(d => d.UserId == user.Id && d.RecordDate >= today
-            .AddDays(-2))
+            .AddDays(-6))
             .OrderByDescending(d => d.RecordDate)
-            .Take(3)
+            .Take(7)
             .ToListAsync();
 
         var viewModel = new PlanesYrecetasViewModel
@@ -63,6 +64,28 @@ public class DatosUsuariocontroller : Controller
         };
         //List<Tiposdeautos> tdea = await contexto.Tiposdeautos.ToListAsync();
         return View(viewModel);
+    }
+
+    public async Task<IActionResult> HistorialDatos()
+    {
+        if (!User.Identity.IsAuthenticated)
+        {
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
+
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+        {
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
+
+        // Obtener todos los registros del usuario ordenados por fecha descendente
+        var datosUsuarioHistorial = await _context.DatosUsers
+            .Where(d => d.UserId == user.Id)
+            .OrderByDescending(d => d.RecordDate)
+            .ToListAsync();
+
+        return View(datosUsuarioHistorial);
     }
 
     [HttpGet]

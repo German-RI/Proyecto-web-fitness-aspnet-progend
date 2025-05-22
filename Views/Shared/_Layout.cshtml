@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +10,8 @@
     <link rel="stylesheet" href="~/ProyectoPROGEND.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body >
+
+<body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark">
             <div class="container">
@@ -17,7 +19,8 @@
                     <img src="~/images/Fit.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
                     <span class="ms-2">Tecno-Fitss</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -26,13 +29,16 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="PlanEntrenamiento" asp-action="Index">Planes de entrenamiento</a>
+                            <a class="nav-link" asp-area="" asp-controller="PlanEntrenamiento" asp-action="Index">Planes
+                                de entrenamiento</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="DatosUsuario" asp-action="Index">Mis selecciones</a>
+                            <a class="nav-link" asp-area="" asp-controller="DatosUsuario" asp-action="Index">Mis
+                                selecciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="SeleccionRecetas" asp-action="Index"> Recetas</a>
+                            <a class="nav-link" asp-area="" asp-controller="SeleccionRecetas" asp-action="Index">
+                                Recetas</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -57,6 +63,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

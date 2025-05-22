@@ -86,6 +86,16 @@ public class SeleccionRecetas : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Id,Nombre,Ingredientes,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas tdea, IFormFile imagen)
     {
+        if (!ModelState.IsValid)
+        {
+            // Inspecciona los errores de validación
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                Console.WriteLine(error); // O usa un logger
+            }
+            return View(tdea); // Devuelve la vista con los errores
+        }
         if (ModelState.IsValid)
         {
             if (imagen != null && imagen.Length > 0)
@@ -291,8 +301,5 @@ public class SeleccionRecetas : Controller
 
         return RedirectToAction("Index");
     }
-
-
-
 
 }
