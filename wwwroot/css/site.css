@@ -179,3 +179,62 @@ clase estilos de el grupo de botones y se defene que se separe por filas
   transform: scale(1.1); /* Aumenta el tamaño de la imagen */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Agrega una sombra al hacer hover */
 }
+
+.form-floating {
+  margin-bottom: 20px;
+}
+
+input[type="number"] {
+  background-color: #eaf2f8;
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  background-color: rgba(145, 144, 144, 0.347);
+  backdrop-filter: blur(10px); /* efecto borroso */
+ -webkit-backdrop-filter: blur(10px); /* compatibilidad con Safari */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) { /* Hace que sea mas responsive */
+  .form-container {
+    width: 90%;
+  }
+}
+
+.alert-float { /* Estilo para las alertas */
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #dc3545; /* Color rojo de alerta */
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: none; /* Oculto por defecto */
+  z-index: 9999;
+}
+
+h1.colo-titulo {
+  margin-bottom: 20px; /* Ajusta la separación entre el título y lo que esté debajo */
+}

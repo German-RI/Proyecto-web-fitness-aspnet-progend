@@ -2,51 +2,53 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<form asp-action="Edit" enctype="multipart/form-data">
-    <div class="form-floating mb-3">
-        <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" required>
-        <label for="floatingInput">Nombre de la receta </label>
-    </div>
-    <br>
-    <div class="form-floating mb-3">
-        <label>Imagen de la receta</label>
-        <img src="~/imagenes/@Model.Image_Portada" class="receta-imagen" alt="img_portada">
-        <input type="hidden" name="Image_Portada" value="@Model.Image_Portada" />
-        <br>
-        <input type="file" name="imagen" class="form-control"/>
-        <label for="floatingInput">Subir Imagen</label>
-    </div><br>
-    <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave a comment here"  asp-for="Ingredientes"
-            style="height: 100px"></textarea>
-        <label for="floatingInput">ingredientes </label>
-    </div>
-    <br>
-    <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave a comment here"  asp-for="Instrucciones"
-            style="height: 100px"></textarea>
-        <label for="floatingInput">instruciones</label>
-    </div>
-    <br>
-    <div class="form-floating">
-        <input asp-for="Calorias" placeholder="Nombre de marca" class="form-control"  required>
-        <label for="floatingTextarea2">Calorias</label>
-    </div>
-    <br>
-    <div class="form-floating">
-        <input asp-for="Proteinas" placeholder="Nombre de marca" class="form-control"  required>
-        <label for="floatingTextarea2">Proteinas</label>
-    </div>
-    <br>
-    <div class="form-floating">
-        <input asp-for="Carbohidratos" placeholder="Nombre de marca" class="form-control"  required>
-        <label for="floatingTextarea2">Carbohidratos</label>
-    </div>
-    <br>
-    <button type="submit" value="Save" class="btn btn-primary">Guardar</button>
+<div asp-validation-summary="All" class="alert alert-danger alert-float"></div>
+<div class="form-container">
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+            <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" required>
+            <label for="floatingInput">Nombre de la receta </label>
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <label>Imagen de la receta</label>
+            <img src="~/imagenes/@Model.Image_Portada" class="receta-imagen" alt="img_portada">
+            <input type="hidden" name="Image_Portada" value="@Model.Image_Portada" />
+            <br>
+            <input type="file" name="imagen" class="form-control" />
+            <label for="floatingInput">Subir Imagen</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Leave a comment here" asp-for="Ingredientes"
+                style="height: 100px"></textarea>
+            <label for="floatingInput">ingredientes </label>
+            <span asp-validation-for="Ingredientes" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Leave a comment here" asp-for="Instrucciones"
+                style="height: 100px"></textarea>
+            <label for="floatingInput">instruciones</label>
+            <span asp-validation-for="Instrucciones" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Calorias" placeholder="Nombre de marca" class="form-control" required>
+            <label for="floatingTextarea2">Calorias</label>
+            <span asp-validation-for="Calorias" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Proteinas" placeholder="Nombre de marca" class="form-control" required>
+            <label for="floatingTextarea2">Proteinas</label>
+            <span asp-validation-for="Proteinas" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Carbohidratos" placeholder="Nombre de marca" class="form-control" required>
+            <label for="floatingTextarea2">Carbohidratos</label>
+            <span asp-validation-for="Carbohidratos" class="text-danger"></span>
+        </div>
+        <button type="submit" value="Save" class="btn btn-primary">Guardar</button>
 
-</form>
-<br>
+    </form>
+</div>
 <div>
     <a class="btn btn-primary" asp-action="Index">Inicio</a>
 </div>

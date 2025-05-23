@@ -3,12 +3,12 @@
     ViewData["Title"] = "Index";
 }
 <div class="container mt-5">
-    <h1 class="mb-4">Recetas</h1>
+    <h1 class="mb-4 colo-titulo">Recetas</h1>
 
     <div>
         <a class="btn btn-primary" asp-action="Create">Añadir Recetas</a>
     </div><br>
-    <h1 class="mb-3">Recetas Recomendadas:</h1><br>
+    <h1 class="mb-3 colo-titulo">Recetas Recomendadas:</h1><br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach (var plan in Model.RecomendacionRecetas)
         {
@@ -35,7 +35,7 @@
         }
     </div>
     <br>
-    <h1 class="mb-3">Todas las Recetas:</h1><br>
+    <h1 class="mb-3 colo-titulo">Todas las Recetas:</h1><br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach (var plan in Model.Recetas)
         {
