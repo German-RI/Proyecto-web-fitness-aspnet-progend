@@ -80,10 +80,8 @@ body {
 
 main {
   flex: 1;
-  background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  padding: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
   
@@ -117,16 +115,52 @@ body {
   background-color: #0e1d17ad; /* Cambia este valor por el color que prefieras */
   /* Puedes añadir otras propiedades opcionales */
   color: #478490; /* Cambia el color del texto si es necesario */
-}.color-main{
-  background-image: url('https://wallpapers.com/images/hd/black-wood-background-2560-x-1600-i1f4s7jnyjprsfx3.jpg');
+
+  /* ajusta la imagen para que cubra todo el div esto es para home */
+}.Fondo-main{
+ background-image: url("/images/Home1.jpg");
   background-size: cover;        /* ajusta la imagen para que cubra todo el div */
   background-position: center;   /* centra la imagen */
   background-repeat: no-repeat;  /* evita que la imagen se repita */
+  padding: 4dvh;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 80vh; /* 100% del alto de la pantalla */
 }
-.color-divfondo{
+  /* ajusta la imagen para que cubra todo el div esto es para fondo de planes de entrenamiento */
+ .fondo-planesentrena{
+  background-image: url("/images/planesentrana.jpg");
+  background-size: cover;        /* ajusta la imagen para que cubra todo el div */
+  background-position: center;   /* centra la imagen */
+  background-repeat: no-repeat;  /* evita que la imagen se repita */
+  padding: 4dvh;
+   border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 
-  background-color: rgba(20, 17, 17, 0.707);
 }
+/* ajusta la imagen para que cubra todo el div esto es para fondo de recetas*/
+ .fondo-receta{
+  background-image: url("/images/Recetas.jpg");
+  background-size: cover;        /* ajusta la imagen para que cubra todo el div */
+  background-position: center;   /* centra la imagen */
+  background-repeat: no-repeat;  /* evita que la imagen se repita */
+  padding: 4dvh;
+   border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+}
+/* ajusta la imagen para que cubra todo el div esto es para fondo mis selecciones*/
+ .fondo-selecciones{
+  background-image: url("/images/Mis selecciones.jpg");
+  background-size: cover;        /* ajusta la imagen para que cubra todo el div */
+  background-position: center;   /* centra la imagen */
+  background-repeat: no-repeat;  /* evita que la imagen se repita */
+  padding: 4dvh;
+   border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+}
+
 .PlanEntranamien {
   white-space: normal;
   text-align: center;
@@ -162,7 +196,7 @@ clase estilos de el grupo de botones y se defene que se separe por filas
  padding: 1rem; /* opcional: para espacio interno */
  display: inline-block !important;
   width: auto !important ;
-  color: #f0f4f8;
+  color: #3f464d;
 }
 
 .receta-imagen {
