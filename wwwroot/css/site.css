@@ -123,8 +123,7 @@ body {
   background-position: center;   /* centra la imagen */
   background-repeat: no-repeat;  /* evita que la imagen se repita */
   padding: 4dvh;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-radius: 15px;
   height: 80vh; /* 100% del alto de la pantalla */
 }
   /* ajusta la imagen para que cubra todo el div esto es para fondo de planes de entrenamiento */
@@ -134,8 +133,7 @@ body {
   background-position: center;   /* centra la imagen */
   background-repeat: no-repeat;  /* evita que la imagen se repita */
   padding: 4dvh;
-   border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-radius: 15px;
 
 }
 /* ajusta la imagen para que cubra todo el div esto es para fondo de recetas*/
@@ -145,9 +143,7 @@ body {
   background-position: center;   /* centra la imagen */
   background-repeat: no-repeat;  /* evita que la imagen se repita */
   padding: 4dvh;
-   border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-
+  border-radius: 15px;
 }
 /* ajusta la imagen para que cubra todo el div esto es para fondo mis selecciones*/
  .fondo-selecciones{
@@ -156,9 +152,7 @@ body {
   background-position: center;   /* centra la imagen */
   background-repeat: no-repeat;  /* evita que la imagen se repita */
   padding: 4dvh;
-   border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-
+  border-radius: 15px;
 }
 
 .PlanEntranamien {
@@ -271,4 +265,16 @@ input[type="number"] {
 
 h1.colo-titulo {
   margin-bottom: 20px; /* Ajusta la separación entre el título y lo que esté debajo */
+}
+.contenedor { /* index home*/
+  position: relative;
+  height: 500px; /* o el alto que necesites */
+  background-color: #f0f0f0; /* solo para ver el área */
+  
+}
+
+.texto-esquina { /* index home*/
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
