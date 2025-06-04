@@ -1,15 +1,23 @@
 @model ProyectoPROGEND.Models.PlanesYrecetasViewModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Index";
 }
 <div class="container mt-5 fondo-planesentrena">
-    <h1 class="mb-4 colo-titulo">Training Plans</h1>
-    <div>
-        <a class="btn btn-primary" asp-action="Create">Create Plan entrenamiento</a>
-    </div><br>
+    <h1 class="mb-4 colo-titulo">Planes de Entrenamiento</h1>
+    @if (User.IsInRole("ADMIN"))
+    {
+        <div>
+            <a class="btn btn-primary" asp-action="Create">Create Plan entrenamiento</a>
+        </div>
+    }
+
+    <br>
     <h1 class="mb-3 colo-titulo">Planes Recomendados:</h1><br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @foreach (var plan in Model.RecomendacionPlanes) 
+        @foreach (var plan in Model.RecomendacionPlanes)
         {
             <div class="col">
                 <div class="card h-100 PlanEntranamien">
@@ -21,9 +29,16 @@
                             <span class="badge bg-secondary">Dificultad: @plan.Dificultad</span>
                         </p>
                         <div class="btn-grup">
-                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link">View Details</a>
-                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id" class="btn btn-outline-success nav-link">Select Plan</a>
-                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-outline-danger nav-link">Eliminar</a>
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link">View
+                                Details</a>
+                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id"
+                                class="btn btn-outline-success nav-link">Select Plan</a>
+                            @if (User.IsInRole("ADMIN"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@plan.Id"
+                                    class="btn btn-outline-danger nav-link">Eliminar</a>
+                            }
+
 
                         </div>
                     </div>
@@ -46,9 +61,16 @@
                             <span class="badge bg-secondary">Dificultad: @plan.Dificultad</span>
                         </p>
                         <div class="btn-grup">
-                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View Details</a>
-                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id"class="btn btn-outline-success nav-link">Select Plan</a>
-                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-outline-danger nav-link">Eliminar</a>
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View
+                                Details</a>
+                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id"
+                                class="btn btn-outline-success nav-link">Select Plan</a>
+                            @if (User.IsInRole("ADMIN"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@plan.Id"
+                                    class="btn btn-outline-danger nav-link">Eliminar</a>
+                            }
+
 
                         </div>
                     </div>

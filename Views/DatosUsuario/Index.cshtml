@@ -4,10 +4,11 @@
 
     <div>
         <h1 class="mb-4 colo-titulo">Tus Datos</h1><br>
-        <div class="colo-titulo">
+        <div class="">
             @if (Model.DatosUsuario != null && Model.DatosUsuario.Any())
             {
-                <table class="table table-dark">
+                <div class="table-responsive">
+                <table class="table table-dark colo-titulo mi-tabla text-white">
                     <thead>
                         <tr>
                             <th scope="col">Calorías Consumidas</th>
@@ -28,6 +29,7 @@
                             </tr>
                         } </tbody>
                 </table>
+                </div>
             }
             else
             {
@@ -42,6 +44,10 @@
     <h1 class="mb-4 colo-titulo">Tus selecciones</h1>
     <br><br><h2 class="colo-titulo">Lista de Planes</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @if (Model.Planes == null || !Model.Planes.Any())
+            {
+                <p class="text-warning">No has seleccionado ningún plan todavía.</p>
+            }
         @foreach (var plan in Model.Planes)
         {
             <div class="col">
@@ -69,6 +75,10 @@
     <br><h2 class="colo-titulo">Listas de Recetas</h2>
     <div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @if (Model.Recetas == null || !Model.Recetas.Any())
+            {
+                <p class="text-warning">No has seleccionado ninguna receta todavía.</p>
+            }
             @foreach (var item in Model.Recetas)
             {
                 <div class="col">

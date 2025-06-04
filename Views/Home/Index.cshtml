@@ -1,7 +1,64 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@model ProyectoPROGEND.Models.DatosVistaInicio;
+@{
     ViewData["Title"] = "Home Page";
 }
-<div class="contenedor Fondo-main">
-    <p class="texto-esquina "><a href="https://alqueria.com.co/blog-nutricion-bienestar/vida-fitness">Leeme</a></p>
+<div class="contenedor mt-5 Fondo-main">
+
+    @if (User.IsInRole("ADMIN"))
+{
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarVistaModal">
+        Editar Vista
+    </button>
+
+    <div class="modal fade" id="editarVistaModal" tabindex="-1" aria-labelledby="editarVistaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form asp-action="EditVistaIndex" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarVistaModalLabel">Editar Vista de Inicio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3">
+                            <label class="form-label">Link del video</label>
+                            <input asp-for="LinkVideo" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Acerca de nosotros</label>
+                            <textarea asp-for="Acercadenosotros" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+    
+    @if (!string.IsNullOrWhiteSpace(Model.LinkVideo))
+{
+    <div class="mb-4">
+        <iframe width="560" height="315" src="@Model.LinkVideo" frameborder="0" allowfullscreen></iframe>
+    </div>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.Acercadenosotros))
+{
+    <div class="mb-4 colo-titulo">
+        @Html.Raw((Model.Acercadenosotros ?? string.Empty)
+            .Replace("<", "&lt;")
+                .Replace(">", "&gt;")
+                .Replace("\r\n", "<br/>")
+                .Replace("\r", "<br/>")
+                .Replace("\n", "<br/>"))
+    </div>
+}
 
 </div>

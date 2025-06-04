@@ -1,12 +1,12 @@
 @model List<ProyectoPROGEND.Models.DatosUser>
 
-<div class="container mt-5">
+<div class="container mt-5 fondo-selecciones">
     <h1 class="mb-4 colo-titulo">Historial de Datos</h1>
 <br>
-    <div class="colo-titulo">
+    <div class="table-responsive">
         @if (Model != null && Model.Any())
         {
-            <table class="table table-dark colo-titulo">
+            <table class=" mi-tabla table table-dark colo-titulo text-white">
                 <thead>
                     <tr>
                         <th scope="col">Calorías Consumidas</th>

@@ -1,28 +1,29 @@
 @model ProyectoPROGEND.Models.DatosUser
-
-<h2>Actualizar Datos</h2>
-
-<form asp-action="UpdateDatos" method="post">
-    <div class="form-group">
-        <label asp-for="CaloriasConsumidas"></label>
-        <input asp-for="CaloriasConsumidas" class="form-control" />
+<div class="container mt-5 fondo-selecciones">
+    <h2 class="mb-4 colo-titulo">Actualizar Datos</h2>
+    <div class="form-container">
+        <form asp-action="UpdateDatos" method="post">
+            <div class="form-floating mb-3">
+                <input class="form-control" asp-for="CaloriasConsumidas" value="0" />
+                <label for="floatingInput">Calorias consumidas:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="CaloriasQuemadas" class="form-control" value="0" />
+                <label for="floatingInput">Calorias quemadas:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Peso" class="form-control" />
+                <label for="floatingInput">Peso (En kilos):</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Altura" class="form-control" />
+                <label for="floatingInput">Altura (En centímetros):</label>
+            </div>
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        </form>
     </div>
-    <div class="form-group">
-        <label asp-for="CaloriasQuemadas"></label>
-        <input asp-for="CaloriasQuemadas" class="form-control" />
+    <br>
+    <div><br>
+        <a class="btn btn-primary" asp-action="Index">Inicio</a>
     </div>
-    <div class="form-group">
-        <label asp-for="Peso">(En kilos)</label>
-        <input asp-for="Peso" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Altura">(En centímetros)</label>
-        <input asp-for="Altura" class="form-control" />
-    </div>
-    <input type="submit" value="Guardar" class="btn btn-primary" />
-</form>
-
-<br>
-<div><br>
-    <a class="btn btn-primary" asp-action="Index">Inicio</a>
 </div>

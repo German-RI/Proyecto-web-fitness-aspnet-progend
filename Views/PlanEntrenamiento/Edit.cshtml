@@ -2,78 +2,86 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<div asp-validation-summary="All" class="alert alert-danger alert-float"></div>
-<div class="form-container">
-    <form asp-action="Edit" enctype="multipart/form-data">
-        <div class="form-floating mb-3">
-            <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" value="@Model.Nombre" required>
-            <label for="floatingInput">Nombre del plan </label>
-            <span asp-validation-for="Nombre" class="text-danger"></span>
-        </div>
-        <div class="form-floating mb-3">
-            <label>Imagen de la receta</label>
-            <img src="~/imagenes/@Model.Image_Portada" class="receta-imagen" alt="img_portada">
-            <input type="hidden" name="Image_Portada" value="@Model.Image_Portada" />
-            <br>
-            <input type="file" name="imagen" class="form-control" />
-            <label for="floatingInput">Subir Imagen</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input asp-for="Descripcion" placeholder="País" class="form-control" value="@Model.Descripcion" required>
-            <label for="floatingInput">Descripcion</label>
-            <span asp-validation-for="Descripcion" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="Duracion" placeholder="País" class="form-control" value="@Model.Duracion" required>
-            <label for="floatingTextarea2">Duracion</label>
-            <span asp-validation-for="Duracion" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="Dificultad" placeholder="País" class="form-control" value="@Model.Dificultad" required>
-            <label for="floatingTextarea2">Dificultad</label>
-            <span asp-validation-for="Dificultad" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="Nivel" placeholder="País" class="form-control" value="@Model.Nivel" required>
-            <label for="floatingTextarea2">Nivel</label>
-            <span asp-validation-for="Nivel" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="EdadMinRecom" placeholder="País" class="form-control" value="@Model.EdadMinRecom" required>
-            <label for="floatingTextarea2">EdadMinRecom</label>
-            <span asp-validation-for="EdadMinRecom" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="EdadMaxRecom" placeholder="País" class="form-control" value="@Model.EdadMaxRecom" required>
-            <label for="floatingTextarea2">EdadMaxRecom</label>
-            <span asp-validation-for="EdadMaxRecom" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="PesoMaxRecom" placeholder="País" class="form-control" value="@Model.PesoMaxRecom" required>
-            <label for="floatingTextarea2">PesoMaxRecom</label>
-            <span asp-validation-for="PesoMaxRecom" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="PesoMinRecom" placeholder="País" class="form-control" value="@Model.PesoMinRecom" required>
-            <label for="floatingTextarea2">Introduzca el peso minimo recomendado:</label>
-            <span asp-validation-for="PesoMinRecom" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="AlturaMinRecom" placeholder="País" class="form-control" value="@Model.AlturaMinRecom"
-                required>
-            <label for="floatingTextarea2">AlturaMinRecom</label>
-            <span asp-validation-for="AlturaMinRecom" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input asp-for="AlturaMaxRecom" placeholder="País" class="form-control" value="@Model.AlturaMaxRecom"
-                required>
-            <label for="floatingTextarea2">AlturaMaxRecom</label>
-            <span asp-validation-for="AlturaMaxRecom" class="text-danger"></span>
-        </div>
-        <button type="submit" value="Save" class="btn btn-primary">Guardar</button>
+<div class="container mt-5 fondo-planesentrena">
+    <div asp-validation-summary="All" class="alert alert-danger alert-float"></div>
+    <h2 class="mb-4 colo-titulo">Editar Plan de entrenamiento</h2>
+    <div class="form-container">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div class="form-floating mb-3">
+                <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" value="@Model.Nombre"
+                    required>
+                <label for="floatingInput">Nombre del plan </label>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <label>Imagen de la receta</label>
+                <img src="~/imagenes/@Model.Image_Portada" class="receta-imagen" alt="img_portada">
+                <input type="hidden" name="Image_Portada" value="@Model.Image_Portada" />
+                <br>
+                <input type="file" name="imagen" class="form-control" />
+                <label for="floatingInput">Subir Imagen</label>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea asp-for="Descripcion" class="form-control" value="@Model.Descripcion" rows="6" required></textarea>
+                <label for="floatingInput">Descripcion</label>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Duracion" placeholder="País" class="form-control" value="@Model.Duracion" required>
+                <label for="floatingTextarea2">Duracion</label>
+                <span asp-validation-for="Duracion" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Dificultad" placeholder="País" class="form-control" value="@Model.Dificultad" required>
+                <label for="floatingTextarea2">Dificultad</label>
+                <span asp-validation-for="Dificultad" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Nivel" placeholder="País" class="form-control" value="@Model.Nivel" required>
+                <label for="floatingTextarea2">Nivel</label>
+                <span asp-validation-for="Nivel" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="EdadMinRecom" placeholder="País" class="form-control" value="@Model.EdadMinRecom"
+                    required>
+                <label for="floatingTextarea2">EdadMinRecom</label>
+                <span asp-validation-for="EdadMinRecom" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="EdadMaxRecom" placeholder="País" class="form-control" value="@Model.EdadMaxRecom"
+                    required>
+                <label for="floatingTextarea2">EdadMaxRecom</label>
+                <span asp-validation-for="EdadMaxRecom" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="PesoMaxRecom" placeholder="País" class="form-control" value="@Model.PesoMaxRecom"
+                    required>
+                <label for="floatingTextarea2">PesoMaxRecom</label>
+                <span asp-validation-for="PesoMaxRecom" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="PesoMinRecom" placeholder="País" class="form-control" value="@Model.PesoMinRecom"
+                    required>
+                <label for="floatingTextarea2">Introduzca el peso minimo recomendado:</label>
+                <span asp-validation-for="PesoMinRecom" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="AlturaMinRecom" placeholder="País" class="form-control" value="@Model.AlturaMinRecom"
+                    required>
+                <label for="floatingTextarea2">AlturaMinRecom</label>
+                <span asp-validation-for="AlturaMinRecom" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="AlturaMaxRecom" placeholder="País" class="form-control" value="@Model.AlturaMaxRecom"
+                    required>
+                <label for="floatingTextarea2">AlturaMaxRecom</label>
+                <span asp-validation-for="AlturaMaxRecom" class="text-danger"></span>
+            </div>
+            <button type="submit" value="Save" class="btn btn-primary">Guardar</button>
 
-    </form>
-</div>
-<div>
-    <a class="btn btn-primary" asp-action="Index">Inicio</a>
+        </form>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-action="Index">Inicio</a>
+    </div>
 </div>
