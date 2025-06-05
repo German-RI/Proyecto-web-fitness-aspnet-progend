@@ -1,13 +1,20 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 @model ProyectoPROGEND.Models.PlanesYrecetasViewModel
 @{
     ViewData["Title"] = "Index";
 }
-<div class="container mt-5 fondo-receta" >
+<div class="container mt-5 fondo-receta">
     <h1 class="mb-4 colo-titulo">Recetas</h1>
+    @if (User.IsInRole("ADMIN"))
+    {
+        <div>
+            <a class="btn btn-primary" asp-action="Create">Añadir Recetas</a>
+        </div>
+    }
 
-    <div>
-        <a class="btn btn-primary" asp-action="Create">Añadir Recetas</a>
-    </div><br>
+    <br>
     <h1 class="mb-3 colo-titulo">Recetas Recomendadas:</h1><br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach (var plan in Model.RecomendacionRecetas)
@@ -24,10 +31,17 @@
                             <li class="list-group-item PlanEntranamien">@plan.Ingredientes</li>
                         </p>
                         <div class="btn-grup">
-                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link">View Details</a>
-                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id" class="btn btn-outline-success nav-link ">Select
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link">View
+                                Details</a>
+                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id"
+                                class="btn btn-outline-success nav-link ">Select
                                 Receta</a>
-                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-outline-danger nav-link ">Eliminar</a>
+                            @if (User.IsInRole("ADMIN"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@plan.Id"
+                                    class="btn btn-outline-danger nav-link ">Eliminar</a>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -51,9 +65,16 @@
                             <li class="list-group-item PlanEntranamien">@plan.Ingredientes</li>
                         </p>
                         <div class="btn-grup">
-                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View Details</a>
-                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id" class="btn btn-outline-success nav-link ">Select Receta</a>
-                            <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-outline-danger nav-link ">Eliminar</a>
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View
+                                Details</a>
+                            <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id"
+                                class="btn btn-outline-success nav-link ">Select Receta</a>
+                            @if (User.IsInRole("ADMIN"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@plan.Id"
+                                    class="btn btn-outline-danger nav-link ">Eliminar</a>
+                            }
+
                         </div>
                     </div>
                 </div>

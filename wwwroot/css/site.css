@@ -9,7 +9,8 @@
   --nav-hover-color: #3a86ff;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -26,7 +27,7 @@ body {
 
 .navbar {
   background-color: var(--nav-bg-color) !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 1rem;
 }
 
@@ -44,7 +45,8 @@ body {
   position: relative;
 
 }
-.btn-create{
+
+.btn-create {
 
   display: inline-block;
 }
@@ -81,10 +83,9 @@ body {
 main {
   flex: 1;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   margin-top: 2rem;
   margin-bottom: 2rem;
-  
+
 }
 
 .footer {
@@ -93,6 +94,7 @@ main {
   padding: 1rem 0;
   flex-shrink: 0;
 }
+
 .btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
@@ -105,52 +107,79 @@ main {
 
 @media (max-width: 576px) {
   .navbar-nav {
-      flex-direction: column;
+    flex-direction: column;
   }
 }
-.color-titulo{
-  color: #daeae2; /* Cambia este color por el que prefieras */
+
+.color-titulo {
+  color: #daeae2;
+  /* Cambia este color por el que prefieras */
 }
+
 body {
-  background-color: #0e1d17ad; /* Cambia este valor por el color que prefieras */
+  background-color: #0e1d17ad;
+  /* Cambia este valor por el color que prefieras */
   /* Puedes añadir otras propiedades opcionales */
-  color: #478490; /* Cambia el color del texto si es necesario */
+  color: #478490;
+  /* Cambia el color del texto si es necesario */
 
   /* ajusta la imagen para que cubra todo el div esto es para home */
-}.Fondo-main{
- background-image: url("/images/Home1.jpg");
-  background-size: cover;        /* ajusta la imagen para que cubra todo el div */
-  background-position: center;   /* centra la imagen */
-  background-repeat: no-repeat;  /* evita que la imagen se repita */
+}
+
+.Fondo-main {
+  background-image: url("/images/Home1.jpg");
+  background-size: cover;
+  /* ajusta la imagen para que cubra todo el div */
+  background-position: center;
+  /* centra la imagen */
+  background-repeat: no-repeat;
+  /* evita que la imagen se repita */
   padding: 4dvh;
   border-radius: 15px;
-  height: 80vh; /* 100% del alto de la pantalla */
+  min-height: 80vh;
+  /* 100% del alto de la pantalla */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-  /* ajusta la imagen para que cubra todo el div esto es para fondo de planes de entrenamiento */
- .fondo-planesentrena{
+
+/* ajusta la imagen para que cubra todo el div esto es para fondo de planes de entrenamiento */
+.fondo-planesentrena {
   background-image: url("/images/planesentrana.jpg");
-  background-size: cover;        /* ajusta la imagen para que cubra todo el div */
-  background-position: center;   /* centra la imagen */
-  background-repeat: no-repeat;  /* evita que la imagen se repita */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  /* ajusta la imagen para que cubra todo el div */
+  background-position: center;
+  /* centra la imagen */
+  background-repeat: no-repeat;
+  /* evita que la imagen se repita */
   padding: 4dvh;
   border-radius: 15px;
 
 }
+
 /* ajusta la imagen para que cubra todo el div esto es para fondo de recetas*/
- .fondo-receta{
+.fondo-receta {
   background-image: url("/images/Recetas.jpg");
-  background-size: cover;        /* ajusta la imagen para que cubra todo el div */
-  background-position: center;   /* centra la imagen */
-  background-repeat: no-repeat;  /* evita que la imagen se repita */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  /* ajusta la imagen para que cubra todo el div */
+  background-position: center;
+  /* centra la imagen */
+  background-repeat: no-repeat;
+  /* evita que la imagen se repita */
   padding: 4dvh;
   border-radius: 15px;
 }
+
 /* ajusta la imagen para que cubra todo el div esto es para fondo mis selecciones*/
- .fondo-selecciones{
+.fondo-selecciones {
   background-image: url("/images/Mis selecciones.jpg");
-  background-size: cover;        /* ajusta la imagen para que cubra todo el div */
-  background-position: center;   /* centra la imagen */
-  background-repeat: no-repeat;  /* evita que la imagen se repita */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  /* ajusta la imagen para que cubra todo el div */
+  background-position: center;
+  /* centra la imagen */
+  background-repeat: no-repeat;
+  /* evita que la imagen se repita */
   padding: 4dvh;
   border-radius: 15px;
 }
@@ -159,38 +188,51 @@ body {
   white-space: normal;
   text-align: center;
   word-break: break-word;
-  background-color: rgba(218, 218, 218, 0.1); /* más visible pero aún translúcido */
-  backdrop-filter: blur(10px); /* efecto borroso */
-  -webkit-backdrop-filter: blur(10px); /* compatibilidad con Safari */
-  border-radius: 10px; /* opcional: para esquinas redondeadas */
-  padding: 1rem; /* opcional: para espacio interno */
+  color: #090128;
+  background-color: rgba(218, 218, 218, 0.1);
+  /* más visible pero aún translúcido */
+  backdrop-filter: blur(10px);
+  /* efecto borroso */
+  -webkit-backdrop-filter: blur(10px);
+  /* compatibilidad con Safari */
+  border-radius: 10px;
+  /* opcional: para esquinas redondeadas */
+  padding: 1rem;
+  /* opcional: para espacio interno */
 }
 
 /*
 se define el ancho de el boton por el texto se ajusta lo mas minimo posible usar !important para forzar
 */
-.card-body .btn{
+.card-body .btn {
   display: inline-block !important;
-  width: auto !important ;
+  width: auto !important;
 }
+
 /*
 clase estilos de el grupo de botones y se defene que se separe por filas
 */
-.btn-grup{
+.btn-grup {
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
 }
-.colo-titulo{
- background-color: rgba(211, 217, 220, 0.4); /* más visible pero aún translúcido */
- backdrop-filter: blur(10px); /* efecto borroso */
- -webkit-backdrop-filter: blur(10px); /* compatibilidad con Safari */
- border-radius: 10px; /* opcional: para esquinas redondeadas */
- padding: 1rem; /* opcional: para espacio interno */
- display: inline-block !important;
-  width: auto !important ;
-  color: #3f464d;
+
+.colo-titulo {
+  background-color: rgba(211, 217, 220, 0.4);
+  /* más visible pero aún translúcido */
+  backdrop-filter: blur(10px);
+  /* efecto borroso */
+  -webkit-backdrop-filter: blur(10px);
+  /* compatibilidad con Safari */
+  border-radius: 10px;
+  /* opcional: para esquinas redondeadas */
+  padding: 1rem;
+  /* opcional: para espacio interno */
+  display: inline-block !important;
+  width: auto !important;
+  color: #34343e;
 }
 
 .receta-imagen {
@@ -204,8 +246,10 @@ clase estilos de el grupo de botones y se defene que se separe por filas
 }
 
 .receta-imagen:hover {
-  transform: scale(1.1); /* Aumenta el tamaño de la imagen */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Agrega una sombra al hacer hover */
+  transform: scale(1.1);
+  /* Aumenta el tamaño de la imagen */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* Agrega una sombra al hacer hover */
 }
 
 .form-floating {
@@ -237,44 +281,78 @@ input[type="number"] {
   max-width: 600px;
   margin: auto;
   background-color: rgba(145, 144, 144, 0.347);
-  backdrop-filter: blur(10px); /* efecto borroso */
- -webkit-backdrop-filter: blur(10px); /* compatibilidad con Safari */
+  backdrop-filter: blur(10px);
+  /* efecto borroso */
+  -webkit-backdrop-filter: blur(10px);
+  /* compatibilidad con Safari */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 768px) { /* Hace que sea mas responsive */
+@media (max-width: 768px) {
+
+  /* Hace que sea mas responsive */
   .form-container {
     width: 90%;
   }
 }
 
-.alert-float { /* Estilo para las alertas */
+.alert-float {
+  /* Estilo para las alertas */
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #dc3545; /* Color rojo de alerta */
+  background-color: #dc3545;
+  /* Color rojo de alerta */
   color: white;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  display: none; /* Oculto por defecto */
+  display: none;
+  /* Oculto por defecto */
   z-index: 9999;
 }
 
 h1.colo-titulo {
-  margin-bottom: 20px; /* Ajusta la separación entre el título y lo que esté debajo */
-}
-.contenedor { /* index home*/
-  position: relative;
-  height: 500px; /* o el alto que necesites */
-  background-color: #f0f0f0; /* solo para ver el área */
-  
+  margin-bottom: 20px;
+  /* Ajusta la separación entre el título y lo que esté debajo */
 }
 
-.texto-esquina { /* index home*/
+.contenedor {
+  /* index home*/
+  position: relative;
+  min-height: 500px;
+  /* o el alto que necesites */
+  background-color: #f0f0f0;
+  /* solo para ver el área */
+
+}
+
+.texto-esquina {
+  /* index home*/
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mi-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px !important;
+  /* Ajusta esto según la cantidad de columnas */
+}
+
+.mi-tabla th,
+.mi-tabla td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
 }
