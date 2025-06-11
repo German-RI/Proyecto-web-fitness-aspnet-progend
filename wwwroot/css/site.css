@@ -330,10 +330,52 @@ h1.colo-titulo {
 }
 
 .texto-esquina {
-  /* index home*/
   position: absolute;
-  bottom: 0;
-  right: 0;
+  text-align: center;
+  right: 15px;
+  bottom: 0px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+  z-index: 10;
+  max-width: 290px;
+  max-height: 190px;
+  overflow: auto;
+  background: rgba(211, 217, 220, 0.333);
+  padding: 1rem;
+  scrollbar-width: thin;
+  /* Firefox: scrollbar delgada */
+  scrollbar-color: transparent transparent;
+  /* Firefox: transparente */
+}
+
+/* Scrollbar transparente y redondeada para Chrome, Edge, Safari */
+.texto-esquina::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.texto-esquina::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 16px;
+}
+
+.texto-esquina::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 600px) {
+  .texto-esquina {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    max-width: unset;
+    width: auto;
+    min-width: 0;
+    max-height: 120px;
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
 }
 
 .table-responsive {
@@ -355,4 +397,44 @@ h1.colo-titulo {
   padding: 8px;
   border: 1px solid #ccc;
   text-align: left;
+}
+
+.class_vidhome {
+  border-radius: 16px;
+  /* Ajusta el valor según lo redondo que quieras */
+  overflow: hidden;
+  /* Importante para que el iframe no sobresalga */
+}
+
+.class_vidhome iframe {
+  border-radius: 16px;
+  /* Igual que el div */
+  width: 25%;
+  /* Opcional: para que el video se adapte al div */
+  height: 25%;
+  /* Opcional: para que el video se adapte al div */
+  display: block;
+  /* Elimina espacios extra */
+}
+
+/*clases para login */
+.colo-titulo-login-register {
+  background-color: rgba(211, 217, 220, 0.4);
+  /* más visible pero aún translúcido */
+  backdrop-filter: blur(10px);
+  /* efecto borroso */
+  -webkit-backdrop-filter: blur(10px);
+  /* compatibilidad con Safari */
+  border-radius: 10px;
+  /* opcional: para esquinas redondeadas */
+  padding: 1rem;
+  /* opcional: para espacio interno */
+  display: inline-block ;
+  width: auto !important;
+  
+}
+.centrar-vista {
+  display: flex;
+  justify-content: center;   /* Centra horizontalmente */
+  align-items: center;       /* Centra verticalmente */           /* O usa 100vh si quieres toda la pantalla */
 }

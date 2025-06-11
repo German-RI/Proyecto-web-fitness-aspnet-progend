@@ -12,7 +12,8 @@
     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarVistaModal">
         Editar Vista
     </button>
-
+    <br>
+    <br>
     <div class="modal fade" id="editarVistaModal" tabindex="-1" aria-labelledby="editarVistaModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -44,14 +45,14 @@
     
     @if (!string.IsNullOrWhiteSpace(Model.LinkVideo))
 {
-    <div class="mb-4">
+    <div class="mb-4 class_vidhome">
         <iframe width="560" height="315" src="@Model.LinkVideo" frameborder="0" allowfullscreen></iframe>
     </div>
 }
 
 @if (!string.IsNullOrWhiteSpace(Model.Acercadenosotros))
 {
-    <div class="mb-4 colo-titulo">
+    <div class="mb-4 colo-titulo texto-esquina">
         @Html.Raw((Model.Acercadenosotros ?? string.Empty)
             .Replace("<", "&lt;")
                 .Replace(">", "&gt;")
