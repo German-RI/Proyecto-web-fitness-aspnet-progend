@@ -1,6 +1,10 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,8 +23,9 @@
                     <img src="~/images/Fit.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
                     <span class="ms-2">Tecno-Fitss</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -30,14 +35,24 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="PlanEntrenamiento" asp-action="Index">Planes de entrenamiento</a>
+                            <a class="nav-link" asp-area="" asp-controller="PlanEntrenamiento" asp-action="Index">Planes
+                                de entrenamiento</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="DatosUsuario" asp-action="Index">Mis selecciones</a>
+                            <a class="nav-link" asp-area="" asp-controller="DatosUsuario" asp-action="Index">Mis
+                                selecciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="SeleccionRecetas" asp-action="Index">Recetas</a>
+                            <a class="nav-link" asp-area="" asp-controller="SeleccionRecetas"
+                                asp-action="Index">Recetas</a>
                         </li>
+                        @if (User.IsInRole("ADMIN"))
+                        {
+                            <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Roles" asp-action="Index">Administrar Roles</a>
+                            </li>
+                        }
+
                     </ul>
                     <div class="d-flex">
                         <partial name="_LoginPartial" />
@@ -70,4 +85,5 @@
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

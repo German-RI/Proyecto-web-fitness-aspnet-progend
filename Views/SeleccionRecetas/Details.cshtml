@@ -9,7 +9,7 @@
 <div class="container mt-5 fondo-receta" >
 <h1 class="mb-3 colo-titulo">Detalles</h1>
 
-<div class=" bg-light rounded-3" style="padding: 2%;">
+<div class="colo-titulo text-dark rounded-3" style="padding: 2%;">
     <h4>Recetas</h4>
     <hr />
     <dl class="row">
@@ -35,7 +35,12 @@
             @Html.DisplayNameFor(model => model.Instrucciones)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Instrucciones)
+            @Html.Raw((Model.Instrucciones ?? string.Empty)
+            .Replace("<", "&lt;")
+                .Replace(">", "&gt;")
+                .Replace("\r\n", "<br/>")
+                .Replace("\r", "<br/>")
+                .Replace("\n", "<br/>"))
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Calorias)
