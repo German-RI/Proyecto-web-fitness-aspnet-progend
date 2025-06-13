@@ -2,30 +2,33 @@
 @{
     ViewData["Title"] = "Usuarios";
 }
+<div class="centrar-vista">
+    <h1 class="mb-4 colo-titulo">Usuarios</h1>
+</div>
+<div class="fondo-roles">
+    <form method="get">
+        <input type="text" name="searchTerm" placeholder="Buscar por correo" class="form-control" />
+        <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+    </form>
 
-<h1>Usuarios</h1>
-
-<form method="get">
-    <input type="text" name="searchTerm" placeholder="Buscar por correo" class="form-control" />
-    <button type="submit" class="btn btn-primary mt-2">Buscar</button>
-</form>
-
-<table class="table mt-4">
-    <thead>
-        <tr>
-            <th>Correo</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
+    <table class="table mt-4">
+        <thead>
             <tr>
-                <td>@user.Email</td>
-                <td>
-                    <a asp-action="ManageRoles" asp-route-userId="@user.Id" class="btn btn-secondary">Gestionar Roles</a>
-                </td>
+                <th>Correo</th>
+                <th>Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>
+                        <a asp-action="ManageRoles" asp-route-userId="@user.Id" class="btn btn-secondary">Gestionar
+                            Roles</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

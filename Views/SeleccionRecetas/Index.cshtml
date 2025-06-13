@@ -7,7 +7,8 @@
 }
 <div class="container mt-5 fondo-receta">
     <h1 class="mb-4 colo-titulo">Recetas</h1>
-    @if (User.IsInRole("ADMIN"))
+    @if (User.IsInRole("ADMIN")
+        || User.IsInRole("EDITRECETA"))
     {
         <div>
             <a class="btn btn-primary" asp-action="Create">Añadir Recetas</a>
@@ -36,7 +37,8 @@
                             <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id"
                                 class="btn btn-outline-success nav-link ">Select
                                 Receta</a>
-                            @if (User.IsInRole("ADMIN"))
+                            @if (User.IsInRole("ADMIN")
+                                                    || User.IsInRole("EDITRECETA"))
                             {
                                 <a asp-action="Delete" asp-route-id="@plan.Id"
                                     class="btn btn-outline-danger nav-link ">Eliminar</a>
@@ -69,7 +71,8 @@
                                 Details</a>
                             <a asp-action="AddRecetaToFavorites" asp-route-id="@plan.Id"
                                 class="btn btn-outline-success nav-link ">Select Receta</a>
-                            @if (User.IsInRole("ADMIN"))
+                            @if (User.IsInRole("ADMIN")
+                                                    || User.IsInRole("EDITRECETA"))
                             {
                                 <a asp-action="Delete" asp-route-id="@plan.Id"
                                     class="btn btn-outline-danger nav-link ">Eliminar</a>

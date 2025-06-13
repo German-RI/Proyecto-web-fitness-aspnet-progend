@@ -7,7 +7,8 @@
 }
 <div class="container mt-5 fondo-planesentrena">
     <h1 class="mb-4 colo-titulo">Planes de Entrenamiento</h1>
-    @if (User.IsInRole("ADMIN"))
+    @if (User.IsInRole("ADMIN")
+        || User.IsInRole("EDITPLANES"))
     {
         <div>
             <a class="btn btn-primary" asp-action="Create">Create Plan entrenamiento</a>
@@ -33,7 +34,8 @@
                                 Details</a>
                             <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id"
                                 class="btn btn-outline-success nav-link">Select Plan</a>
-                            @if (User.IsInRole("ADMIN"))
+                            @if (User.IsInRole("ADMIN")
+                                || User.IsInRole("EDITPLANES"))
                             {
                                 <a asp-action="Delete" asp-route-id="@plan.Id"
                                     class="btn btn-outline-danger nav-link">Eliminar</a>
@@ -65,7 +67,8 @@
                                 Details</a>
                             <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id"
                                 class="btn btn-outline-success nav-link">Select Plan</a>
-                            @if (User.IsInRole("ADMIN"))
+                            @if (User.IsInRole("ADMIN")
+                                || User.IsInRole("EDITPLANES"))
                             {
                                 <a asp-action="Delete" asp-route-id="@plan.Id"
                                     class="btn btn-outline-danger nav-link">Eliminar</a>

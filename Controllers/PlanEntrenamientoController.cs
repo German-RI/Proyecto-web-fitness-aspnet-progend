@@ -63,7 +63,7 @@ public class PlanEntrenamientoController : Controller
     }
 
     /*Crear plan de entrenamiento*/
-    [Authorize(Roles = "ADMIN")]//Se autoriza solo al Administrador (por ahora)
+    [Authorize(Roles = "ADMIN,EDITPLANES")]//Se autoriza solo al Administrador (por ahora)
     public IActionResult Create()
     {
         return View();//retorna la vista para introducir datos
@@ -130,7 +130,7 @@ public class PlanEntrenamientoController : Controller
 
     }
     /*Editar*/
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN,EDITPLANES")]
     public async Task<IActionResult> Edit(int? Id)
     {
         if (Id == null || _context.PlanEntranamiento == null)
@@ -215,7 +215,7 @@ public class PlanEntrenamientoController : Controller
         return (_context.PlanEntranamiento?.Any(e => e.Id == id)).GetValueOrDefault();
     }
     //Delete/
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN,EDITPLANES")]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null || _context.PlanEntranamiento == null)

@@ -76,7 +76,7 @@ public class SeleccionRecetas : Controller
     }
 
     /*create */
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN,EDITRECETA")]
     public IActionResult Create()
     {
         return View();
@@ -140,7 +140,7 @@ public class SeleccionRecetas : Controller
 
     }
     /*Editar*/
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN,EDITRECETA")]
     public async Task<IActionResult> Edit(int? Id)
     {
         if (Id == null || _context.Recetas == null)
@@ -237,7 +237,7 @@ public class SeleccionRecetas : Controller
         return (_context.Recetas?.Any(e => e.Id == id)).GetValueOrDefault();
     }
     //Delete/
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN,EDITRECETA")]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null || _context.Recetas == null)

@@ -200,6 +200,18 @@ body {
   padding: 1rem;
   /* opcional: para espacio interno */
 }
+.fondo-roles{
+  background-image: url("/images/roles.png");
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  /* ajusta la imagen para que cubra todo el div */
+  background-position: center;
+  /* centra la imagen */
+  background-repeat: no-repeat;
+  /* evita que la imagen se repita */
+  padding: 4dvh;
+  border-radius: 15px;
+}
 
 /*
 se define el ancho de el boton por el texto se ajusta lo mas minimo posible usar !important para forzar
@@ -437,4 +449,13 @@ h1.colo-titulo {
   display: flex;
   justify-content: center;   /* Centra horizontalmente */
   align-items: center;       /* Centra verticalmente */           /* O usa 100vh si quieres toda la pantalla */
+}
+.table{
+   background-color: rgba(131, 194, 226, 0.326);
+  /* más visible pero aún translúcido */
+  backdrop-filter: blur(10px);
+  /* efecto borroso */
+  -webkit-backdrop-filter: blur(10px);
+  /* compatibilidad con Safari */
+  border-radius: 10px;
 }
