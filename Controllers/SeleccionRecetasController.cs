@@ -84,7 +84,7 @@ public class SeleccionRecetas : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nombre,Ingredientes,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas tdea, IFormFile imagen)
+    public async Task<IActionResult> Create([Bind("Id,Nombre,Ingredientes,TiempoPreparacion,Porciones,TipoComida,Dificultad,Beneficios,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas tdea, IFormFile imagen)
     {
         if (!ModelState.IsValid)
         {
@@ -159,7 +159,7 @@ public class SeleccionRecetas : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Image_Portada,Ingredientes,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas recetas, IFormFile? imagen)
+    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Image_Portada,Ingredientes,TiempoPreparacion,Porciones,TipoComida,Dificultad,Beneficios,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas recetas, IFormFile? imagen)
     {
         if (Id != recetas.Id)
         {

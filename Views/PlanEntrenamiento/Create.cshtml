@@ -15,6 +15,26 @@
                 <input type="file" name="imagen" class="form-control" required />
             </div>
             <div class="form-floating mb-3">
+                <input asp-for="TipoEntrenamiento" placeholder="" class="form-control" required>
+                <label for="floatingInput">Tipo de Entrenamiento (cardio, fuerza, HIIT, yoga, etc)</label>
+                <span asp-validation-for="TipoEntrenamiento" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Equipamiento" placeholder="" class="form-control" required>
+                <label for="floatingInput">Equipamiento necesario</label>
+                <span asp-validation-for="Equipamiento" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Frecuencia" placeholder="" class="form-control" required>
+                <label for="floatingInput">Frecuencia de entrenamiento (diaria, semanal, etc)</label>
+                <span asp-validation-for="Frecuencia" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Objetivo" placeholder="" class="form-control" required>
+                <label for="floatingInput">Objetivo del Plan (pérdida de peso, ganancia muscular, etc)</label>
+                <span asp-validation-for="Objetivo" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
                 <input asp-for="Duracion" placeholder="" class="form-control" required>
                 <label for="floatingInput">Duracion del Plan</label>
                 <span asp-validation-for="Duracion" class="text-danger"></span>
@@ -30,7 +50,7 @@
                 <span asp-validation-for="Nivel" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" asp-for="Descripcion"
+                <textarea class="form-control" placeholder="Leave a comment here" asp-for="Descripcion" id="descripcionTextarea"
                     style="height: 100px"></textarea>
                 <label for="floatingTextarea2">Descripcion</label>
                 <span asp-validation-for="Descripcion" class="text-danger"></span>

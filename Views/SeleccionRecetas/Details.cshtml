@@ -32,6 +32,43 @@
             @Html.DisplayFor(model => model.Ingredientes)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TiempoPreparacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TiempoPreparacion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Porciones)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Porciones)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoComida)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TipoComida)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Dificultad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Dificultad)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficios)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw((Model.Beneficios ?? string.Empty)
+                .Replace("<", "&lt;")
+                .Replace(">", "&gt;")
+                .Replace("\r\n", "<br/>")
+                .Replace("\r", "<br/>")
+                .Replace("\n", "<br/>")
+                .Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;") // Tabuladores
+                .Replace("  ", "&nbsp;&nbsp;")) // Espacios múltiples
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Instrucciones)
         </dt>
         <dd class="col-sm-10">

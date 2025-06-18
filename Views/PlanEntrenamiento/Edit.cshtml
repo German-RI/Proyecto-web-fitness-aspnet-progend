@@ -22,7 +22,27 @@
                 <label for="floatingInput">Subir Imagen</label>
             </div>
             <div class="form-floating mb-3">
-                <textarea asp-for="Descripcion" class="form-control" value="@Model.Descripcion" rows="6" required></textarea>
+                <input asp-for="TipoEntrenamiento" placeholder="" class="form-control" required>
+                <label for="floatingInput">Tipo de Entrenamiento (cardio, fuerza, HIIT, yoga, etc)</label>
+                <span asp-validation-for="TipoEntrenamiento" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Equipamiento" placeholder="" class="form-control" required>
+                <label for="floatingInput">Equipamiento necesario</label>
+                <span asp-validation-for="Equipamiento" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Frecuencia" placeholder="" class="form-control" required>
+                <label for="floatingInput">Frecuencia de entrenamiento (diaria, semanal, etc)</label>
+                <span asp-validation-for="Frecuencia" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Objetivo" placeholder="" class="form-control" required>
+                <label for="floatingInput">Objetivo del Plan (pérdida de peso, ganancia muscular, etc)</label>
+                <span asp-validation-for="Objetivo" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea asp-for="Descripcion" class="form-control" value="@Model.Descripcion" id="descripcionTextarea" rows="6" required></textarea>
                 <label for="floatingInput">Descripcion</label>
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>

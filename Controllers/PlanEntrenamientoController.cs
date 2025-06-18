@@ -71,7 +71,7 @@ public class PlanEntrenamientoController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nombre,Image_Portada,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento tdea, IFormFile? imagen)
+    public async Task<IActionResult> Create([Bind("Id,Nombre,Image_Portada,TipoEntrenamiento,Equipamiento,Frecuencia,Objetivo,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento tdea, IFormFile? imagen)
     {
         if (ModelState.IsValid)
         {
@@ -149,7 +149,7 @@ public class PlanEntrenamientoController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Image_Portada,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento planEntrena, IFormFile? imagen)
+    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Image_Portada,TipoEntrenamiento,Equipamiento,Frecuencia,Objetivo,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento planEntrena, IFormFile? imagen)
     {
         if (Id != planEntrena.Id)
         {

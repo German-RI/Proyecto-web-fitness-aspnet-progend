@@ -17,3 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+document.getElementById('descripcionTextarea').addEventListener('keydown', function (e) {
+    if (e.key === 'Tab') {
+        e.preventDefault(); // Evita que el tab cambie el foco
+        const textarea = e.target;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+
+        // Inserta 4 espacios en la posición del cursor
+        textarea.value = textarea.value.substring(0, start) + '    ' + textarea.value.substring(end);
+
+        // Mueve el cursor después de los espacios insertados
+        textarea.selectionStart = textarea.selectionEnd = start + 4;
+    }
+});
