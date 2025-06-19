@@ -32,3 +32,11 @@ document.getElementById('descripcionTextarea').addEventListener('keydown', funct
         textarea.selectionStart = textarea.selectionEnd = start + 4;
     }
 });
+
+$(document).ready(function () {
+    if ($("#message").length) {
+        setTimeout(function () {
+            $("#message").fadeOut("slow");
+        }, 10000);
+    }
+});
