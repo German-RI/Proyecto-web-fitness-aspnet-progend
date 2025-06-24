@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Ocultar automáticamente después de 5 segundos
         setTimeout(function () {
             validationSummary.style.display = "none";
-        }, 5000);
+        }, 10000);
     } else {
         validationSummary.style.display = "none"; // Mantenerlo oculto si está vacío
     }

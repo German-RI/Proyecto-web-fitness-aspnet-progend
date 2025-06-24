@@ -20,11 +20,13 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IConfiguration _config;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender, IConfiguration config)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _config = config;
         }
 
         /// <summary>
@@ -64,11 +66,8 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                    "/Account/ResetPassword",
-                    pageHandler: null,
-                    values: new { area = "Identity", code },
-                    protocol: Request.Scheme);
+                var baseUrl = _config["AppSettings:PublicBaseUrl"];
+                var callbackUrl = $"{baseUrl}/Identity/Account/ResetPassword?code={Uri.EscapeDataString(code)}";
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,

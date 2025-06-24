@@ -4,9 +4,25 @@ using ProyectoPROGEND.Models;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.AspNetCore.Identity;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using ProyectoPROGEND.Services;
+
 //using ProyectoPROGEND.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[] { new System.Globalization.CultureInfo("es") };
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("es");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -19,6 +35,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
+
+// Registra el EmailSender para que se inyecte donde se requiera IEmailSender
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = true;
+});
 
 var app = builder.Build();
 

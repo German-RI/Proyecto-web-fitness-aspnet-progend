@@ -86,6 +86,10 @@ public class SeleccionRecetas : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Id,Nombre,Ingredientes,TiempoPreparacion,Porciones,TipoComida,Dificultad,Beneficios,Instrucciones,Calorias,Proteinas,Carbohidratos")] Recetas tdea, IFormFile imagen)
     {
+        if (imagen == null || imagen.Length == 0)
+        {
+            ModelState.AddModelError("imagen", "La imagen es obligatoria.");
+        }
         if (!ModelState.IsValid)
         {
             // Inspecciona los errores de validación

@@ -1,3 +1,5 @@
 /bin/
 /obj/
 /wwwroot/imagenes/
+/appsettings.Development.json
+/appsettings.json

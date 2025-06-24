@@ -33,7 +33,7 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
         public string Email { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        ///     Esta API es compatible con la infraestructura de la interfaz de usuario predeterminada de ASP.NET Core Identity y no está destinada a ser utilizada
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public bool DisplayConfirmAccountLink { get; set; }
@@ -60,7 +60,7 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
 
             Email = email;
             // Once you add a real email sender, you should remove this code that lets you confirm the account
-            DisplayConfirmAccountLink = true;
+            DisplayConfirmAccountLink = false;
             if (DisplayConfirmAccountLink)
             {
                 var userId = await _userManager.GetUserIdAsync(user);
