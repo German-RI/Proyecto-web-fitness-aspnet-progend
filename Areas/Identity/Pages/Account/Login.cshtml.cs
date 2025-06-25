@@ -109,8 +109,15 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
+                if (user != null && !await _signInManager.UserManager.IsEmailConfirmedAsync(user))
+                {
+                    ModelState.AddModelError(string.Empty, "Debes confirmar tu correo electrónico antes de iniciar sesión.");
+                    return Page();
+                }
+
+                // Esto no cuenta los intentos fallidos de inicio de sesión para el bloqueo de la cuenta
+                // Para habilitar que los fallos de contraseña desencadenen el bloqueo de la cuenta, establece lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {

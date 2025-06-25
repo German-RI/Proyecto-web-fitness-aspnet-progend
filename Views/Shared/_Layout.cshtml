@@ -48,8 +48,21 @@
                         </li>
                         @if (User.IsInRole("ADMIN"))
                         {
-                            <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Roles" asp-action="Index">Administrar Roles</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="administrarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Administrar
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="administrarDropdown">
+                                    <li>
+                                        <a class="nav-item dropdown-item" asp-area="" asp-controller="Roles"
+                                            asp-action="Index">Administrar Roles</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-item dropdown-item" asp-area="" asp-controller="BaseDatos"
+                                            asp-action="Backup">Restaurar Base de Datos</a>
+                                    </li>
+                                </ul>
                             </li>
                         }
 

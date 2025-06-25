@@ -8,36 +8,61 @@
     <div class="form-container">
         <form asp-action="Create" enctype="multipart/form-data">
             <div class="form-floating mb-3">
-                <input asp-for="Nombre" placeholder="" class="form-control" required>
+                <input asp-for="Nombre" placeholder="" class="form-control">
                 <label for="floatingInput">Nombre De la Receta</label>
                 <span asp-validation-for="Nombre" class="text-danger"></span>
 
             </div>
             <div class="form-floating mb-3">
-                <input type="file" name="imagen" class="form-control" required />
-
+                <input type="file" name="imagen" class="form-control" />
+                <span class="text-danger">@ViewData.ModelState["imagen"]?.Errors.FirstOrDefault()?.ErrorMessage</span>
             </div>
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" asp-for="Ingredientes"
+                <textarea class="form-control" placeholder="Leave a comment here" asp-for="Ingredientes" id="descripcionTextarea"
                     style="height: 100px"></textarea>
                 <label for="floatingTextarea2">Lista De ingredientes</label>
                 <span asp-validation-for="Ingredientes" class="text-danger"></span>
 
             </div>
             <div class="form-floating">
-                <input asp-for="Calorias" placeholder="" class="form-control" required>
+                <input asp-for="TiempoPreparacion" placeholder="" class="form-control">
+                <label for="floatingTextarea2">Tiempo de Elaboracion</label>
+                <span asp-validation-for="TiempoPreparacion" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Porciones" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Porciones por personas</label>
+                <span asp-validation-for="Porciones" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="TipoComida" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Tipo de Comida (Si es desayuno, halmuerzo, cena o merienda)</label>
+                <span asp-validation-for="TipoComida" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Dificultad" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Dificultad a la hora de cocinar</label>
+                <span asp-validation-for="Dificultad" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Beneficios" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Beneficios nutricionales</label>
+                <span asp-validation-for="Beneficios" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Calorias" placeholder="" class="form-control" >
                 <label for="floatingTextarea2">Calorias de el producto</label>
                 <span asp-validation-for="Calorias" class="text-danger"></span>
 
             </div>
             <div class="form-floating">
-                <input asp-for="Proteinas" placeholder="" class="form-control" required>
+                <input asp-for="Proteinas" placeholder="" class="form-control" >
                 <label for="floatingTextarea2">Proteinas</label>
                 <span asp-validation-for="Proteinas" class="text-danger"></span>
 
             </div>
             <div class="form-floating">
-                <input asp-for="Carbohidratos" placeholder="" class="form-control" required>
+                <input asp-for="Carbohidratos" placeholder="" class="form-control" >
                 <label for="floatingTextarea2">Introduzca Carbohidratos en Kcal</label>
                 <span asp-validation-for="Carbohidratos" class="text-danger"></span>
 

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ProyectoPROGEND.Controllers;
+
 public class PlanEntrenamientoController : Controller
 {
 
@@ -71,8 +72,12 @@ public class PlanEntrenamientoController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nombre,Image_Portada,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento tdea, IFormFile? imagen)
+    public async Task<IActionResult> Create([Bind("Id,Nombre,Image_Portada,TipoEntrenamiento,Equipamiento,Frecuencia,Objetivo,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento tdea, IFormFile? imagen)
     {
+        if (imagen == null || imagen.Length == 0)
+        {
+            ModelState.AddModelError("imagen", "La imagen es obligatoria.");
+        }
         if (ModelState.IsValid)
         {
             if (imagen != null && imagen.Length > 0)
@@ -149,7 +154,7 @@ public class PlanEntrenamientoController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Image_Portada,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento planEntrena, IFormFile? imagen)
+    public async Task<IActionResult> Edit(int? Id, [Bind("Id,Nombre,Image_Portada,TipoEntrenamiento,Equipamiento,Frecuencia,Objetivo,Duracion,Dificultad,Nivel,Descripcion,EdadMinRecom,EdadMaxRecom,PesoMaxRecom,PesoMinRecom,AlturaMinRecom,AlturaMaxRecom")] PlanEntranamiento planEntrena, IFormFile? imagen)
     {
         if (Id != planEntrena.Id)
         {

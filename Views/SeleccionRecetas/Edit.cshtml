@@ -8,7 +8,7 @@
     <div class="form-container">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div class="form-floating mb-3">
-                <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" required>
+                <input asp-for="Nombre" placeholder="Nombre de marca" class="form-control" >
                 <label for="floatingInput">Nombre de la receta </label>
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
@@ -26,24 +26,49 @@
                 <label for="floatingInput">ingredientes </label>
                 <span asp-validation-for="Ingredientes" class="text-danger"></span>
             </div>
+            <div class="form-floating">
+                <input asp-for="TiempoPreparacion" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Tiempo de Elaboracion</label>
+                <span asp-validation-for="TiempoPreparacion" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Porciones" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Porciones por personas</label>
+                <span asp-validation-for="Porciones" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="TipoComida" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Tipo de Comida (Si es desayuno, halmuerzo, cena o merienda)</label>
+                <span asp-validation-for="TipoComida" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Dificultad" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Dificultad a la hora de cocinar</label>
+                <span asp-validation-for="Dificultad" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Beneficios" placeholder="" class="form-control" >
+                <label for="floatingTextarea2">Beneficios nutricionales</label>
+                <span asp-validation-for="Beneficios" class="text-danger"></span>
+            </div>
             <div class="form-floating mb-3">
-                <textarea class="form-control" placeholder="Leave a comment here" asp-for="Instrucciones"
+                <textarea class="form-control" id="descripcionTextarea" placeholder="Leave a comment here" asp-for="Instrucciones"
                     style="height: 100px"></textarea>
                 <label for="floatingInput">instruciones</label>
                 <span asp-validation-for="Instrucciones" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="Calorias" placeholder="Nombre de marca" class="form-control" required>
+                <input asp-for="Calorias" placeholder="Nombre de marca" class="form-control" >
                 <label for="floatingTextarea2">Calorias</label>
                 <span asp-validation-for="Calorias" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="Proteinas" placeholder="Nombre de marca" class="form-control" required>
+                <input asp-for="Proteinas" placeholder="Nombre de marca" class="form-control" >
                 <label for="floatingTextarea2">Proteinas</label>
                 <span asp-validation-for="Proteinas" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="Carbohidratos" placeholder="Nombre de marca" class="form-control" required>
+                <input asp-for="Carbohidratos" placeholder="Nombre de marca" class="form-control" >
                 <label for="floatingTextarea2">Carbohidratos</label>
                 <span asp-validation-for="Carbohidratos" class="text-danger"></span>
             </div>

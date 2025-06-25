@@ -11,9 +11,32 @@ document.addEventListener("DOMContentLoaded", function () {
         // Ocultar automáticamente después de 5 segundos
         setTimeout(function () {
             validationSummary.style.display = "none";
-        }, 5000);
+        }, 10000);
     } else {
         validationSummary.style.display = "none"; // Mantenerlo oculto si está vacío
     }
 
+});
+
+document.getElementById('descripcionTextarea').addEventListener('keydown', function (e) {
+    if (e.key === 'Tab') {
+        e.preventDefault(); // Evita que el tab cambie el foco
+        const textarea = e.target;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+
+        // Inserta 4 espacios en la posición del cursor
+        textarea.value = textarea.value.substring(0, start) + '    ' + textarea.value.substring(end);
+
+        // Mueve el cursor después de los espacios insertados
+        textarea.selectionStart = textarea.selectionEnd = start + 4;
+    }
+});
+
+$(document).ready(function () {
+    if ($("#message").length) {
+        setTimeout(function () {
+            $("#message").fadeOut("slow");
+        }, 10000);
+    }
 });

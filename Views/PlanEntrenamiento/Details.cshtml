@@ -26,6 +26,30 @@
             <img src="~/imagenes/@Model.Image_Portada" alt="img_portada" height="150px">
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoEntrenamiento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TipoEntrenamiento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Equipamiento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Equipamiento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Frecuencia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Frecuencia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Objetivo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Objetivo)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
         <dd class="col-sm-10">
@@ -34,7 +58,9 @@
                 .Replace(">", "&gt;")
                 .Replace("\r\n", "<br/>")
                 .Replace("\r", "<br/>")
-                .Replace("\n", "<br/>"))
+                .Replace("\n", "<br/>")
+                .Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;") // Tabuladores
+                .Replace("  ", "&nbsp;&nbsp;")) // Espacios múltiples
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Dificultad)

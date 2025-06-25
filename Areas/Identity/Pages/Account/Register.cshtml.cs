@@ -29,13 +29,16 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IConfiguration _config;
+
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IConfiguration config)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +46,7 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _config = config;
         }
 
         /// <summary>
@@ -100,11 +104,11 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
             // Campos adicionales
             [Required]
             [DataType(DataType.Date)]
-            [Display(Name = "Fecha de Nacimiento")] 
+            [Display(Name = "Fecha de Nacimiento")]
             public DateTime FechaNacimiento { get; set; }
-            
+
             [Required]
-            [Display(Name = "Sexo")] 
+            [Display(Name = "Sexo")]
             public string Sexo { get; set; }
         }
 
@@ -128,7 +132,7 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
                 // Asignar los nuevos campos 
-                user.FechaNacimiento = Input.FechaNacimiento; 
+                user.FechaNacimiento = Input.FechaNacimiento;
                 user.Sexo = Input.Sexo;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -140,14 +144,11 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                    var baseUrl = _config["AppSettings:PublicBaseUrl"];
+                    var callbackUrl = $"{baseUrl}/Identity/Account/ConfirmEmail?userId={Uri.EscapeDataString(userId)}&code={Uri.EscapeDataString(code)}&returnUrl={Uri.EscapeDataString(returnUrl)}";
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        $"Por favor confirme su cuenta haciendo <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>click aquí</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

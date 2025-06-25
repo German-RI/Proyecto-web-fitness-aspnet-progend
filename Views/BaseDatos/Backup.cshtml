@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Respaldar Base de Datos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info" id="message">@TempData["Message"]</div>
+}
+
+<form asp-controller="BaseDatos" asp-action="BackupDatabase" method="post">
+    <button type="submit">Respaldar</button>
+</form>
+
+<h2>Restaurar Base de Datos</h2>
+
+
+<form asp-controller="BaseDatos" asp-action="RestoreDatabase" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="backupFile">Seleccione el archivo de respaldo (.sql):</label>
+        <input type="file" name="backupFile" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Restaurar</button>
+</form>
+
