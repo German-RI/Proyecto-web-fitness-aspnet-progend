@@ -3,25 +3,29 @@
 @{
     ViewData["Title"] = "Registro confirmado";
 }
-
-<h1>@ViewData["Title"]</h1>
-@{
-    if (@Model.DisplayConfirmAccountLink)
-    {
-        <p>
-            Esta aplicación no tiene actualmente un remitente de correo electrónico real registrado, consulte <a
-                href="https://aka.ms/aspaccountconf">esta documentación</a> para obtener información sobre cómo configurar un
-            remitente de correo electrónico real.
-            Normalmente, esto se enviaría por correo electrónico: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Haga
-                clic aquí para confirmar su cuenta</a>
-        </p>
+<div class="Fondo-main">
+    <h1 class="colo-titulo">@ViewData["Title"]</h1>
+    <br>
+    @{
+        if (@Model.DisplayConfirmAccountLink)
+        {
+            <p>
+                Esta aplicación no tiene actualmente un remitente de correo electrónico real registrado, consulte <a
+                    href="https://aka.ms/aspaccountconf">esta documentación</a> para obtener información sobre cómo configurar
+                un
+                remitente de correo electrónico real.
+                Normalmente, esto se enviaría por correo electrónico: <a id="confirm-link"
+                    href="@Model.EmailConfirmationUrl">Haga
+                    clic aquí para confirmar su cuenta</a>
+            </p>
+        }
+        else
+        {
+            <div class="colo-titulo">
+                <h2>Registro exitoso</h2>
+                <p>Hemos enviado un correo de confirmación a <strong>@Model.Email</strong>.</p>
+                <p>Por favor revisa tu bandeja de entrada y haz clic en el enlace para activar tu cuenta.</p>
+            </div>
+        }
     }
-    else
-    {
-        
-        <h2>Registro exitoso</h2>
-        <p>Hemos enviado un correo de confirmación a <strong>@Model.Email</strong>.</p>
-        <p>Por favor revisa tu bandeja de entrada y haz clic en el enlace para activar tu cuenta.</p>
-        
-    }
-}
+</div>

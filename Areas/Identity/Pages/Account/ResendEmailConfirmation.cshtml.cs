@@ -66,7 +66,7 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Verification email sent. Porfavor revisa si tu Email es el correcto.");
+                ModelState.AddModelError(string.Empty, "Verification email sent. Porfavor revisa tu Email");
                 return Page();
             }
 
@@ -81,7 +81,7 @@ namespace ProyectoPROGEND.Areas.Identity.Pages.Account
                 "Confirm your email",
                 $"Porfavor confirma tu cuenta dandole <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Click aquí!</a>.");
 
-            ModelState.AddModelError(string.Empty, "Verification email sent. Porfavor revisa si tu Email es el correcto.");
+            ModelState.AddModelError(string.Empty, "Verification email sent. Porfavor revisa tu Email");
             return Page();
         }
     }

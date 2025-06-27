@@ -1,26 +1,31 @@
 @{
     ViewData["Title"] = "Respaldar Base de Datos";
 }
+<div class="fondo-roles">
+    <Div class="form-container">
+        <h2 class="colo-titulo">@ViewData["Title"]</h2>
 
-<h2>@ViewData["Title"]</h2>
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-info" id="message">@TempData["Message"]</div>
+        }
 
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-info" id="message">@TempData["Message"]</div>
-}
+        <form asp-controller="BaseDatos" asp-action="BackupDatabase" method="post">
+            <button type="submit" class="btn btn-outline-success">Respaldar</button>
+        </form>
+    </Div>
+    <br>
+    <div class="form-container">
 
-<form asp-controller="BaseDatos" asp-action="BackupDatabase" method="post">
-    <button type="submit">Respaldar</button>
-</form>
-
-<h2>Restaurar Base de Datos</h2>
+        <h2 class="colo-titulo">Restaurar Base de Datos</h2>
 
 
-<form asp-controller="BaseDatos" asp-action="RestoreDatabase" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="backupFile">Seleccione el archivo de respaldo (.sql):</label>
-        <input type="file" name="backupFile" class="form-control" required />
+        <form asp-controller="BaseDatos" asp-action="RestoreDatabase" method="post" enctype="multipart/form-data">
+            <div class="form-group colo-titulo">
+                <label for="backupFile">Seleccione el archivo de respaldo (.sql):</label>
+                <input type="file" name="backupFile" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-outline-success">Restaurar</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-primary">Restaurar</button>
-</form>
-
+</div>
