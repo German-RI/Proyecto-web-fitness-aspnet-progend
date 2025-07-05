@@ -112,6 +112,7 @@ public class PlanEntrenamientoController : Controller
                 _context.Entry(tdea).Property(r => r.Image_Portada).IsModified = false;
             }
             _context.Add(tdea);
+            TempData["Message"] = "Plan de entrenamiento creado correctamente.";
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -130,6 +131,14 @@ public class PlanEntrenamientoController : Controller
         {
             return NotFound();
         }
+
+        // Cargar recetas recomendadas
+        var recetasRecomendadas = await _context.RelacionEntrenamientoRecetas
+            .Where(r => r.PlanEntrenamientoId == id)
+            .Select(r => r.Recetas)
+            .ToListAsync();
+
+        ViewBag.RecetasRecomendadas = recetasRecomendadas;
 
         return View(planEntrena);
 
@@ -211,6 +220,7 @@ public class PlanEntrenamientoController : Controller
                     throw;
                 }
             }
+            TempData["Message"] = "Actualización exitosa.";
             return RedirectToAction(nameof(Index));
         }
         return View(planEntrena);
@@ -219,6 +229,66 @@ public class PlanEntrenamientoController : Controller
     {
         return (_context.PlanEntranamiento?.Any(e => e.Id == id)).GetValueOrDefault();
     }
+
+    // Mostrar y editar recetas recomendadas para un plan
+    [Authorize(Roles = "ADMIN,EDITPLANES")]
+    public async Task<IActionResult> EditRecetasToPlan(int? id, string search = null)
+    {
+        if (id == null) return NotFound();
+
+        var plan = await _context.PlanEntranamiento.FindAsync(id);
+        if (plan == null) return NotFound();
+
+        // Recetas ya recomendadas
+        var recetasRecomendadas = await _context.RelacionEntrenamientoRecetas
+            .Where(r => r.PlanEntrenamientoId == id)
+            .Select(r => r.Recetas)
+            .ToListAsync();
+
+        // Todas las recetas (con filtro de búsqueda si aplica)
+        var recetasQuery = _context.Recetas.AsQueryable();
+        if (!string.IsNullOrEmpty(search))
+            recetasQuery = recetasQuery.Where(r => r.Nombre.Contains(search));
+        var todasRecetas = await recetasQuery.ToListAsync();
+
+        // IDs de recetas recomendadas para marcar en la vista
+        var recomendadasIds = recetasRecomendadas.Select(r => r.Id).ToHashSet();
+
+        ViewBag.PlanId = id;
+        ViewBag.RecetasRecomendadas = recetasRecomendadas;
+        ViewBag.RecomendadasIds = recomendadasIds;
+        ViewBag.Search = search;
+        return View(todasRecetas);
+    }
+
+    // Acción para añadir o quitar receta recomendada (toggle)
+    [Authorize(Roles = "ADMIN,EDITPLANES")]
+    [HttpPost]
+    public async Task<IActionResult> ToggleRecetaRecomendada(int planId, int recetaId)
+    {
+        var relacion = await _context.RelacionEntrenamientoRecetas
+            .FirstOrDefaultAsync(r => r.PlanEntrenamientoId == planId && r.RecetasId == recetaId);
+
+        if (relacion == null)
+        {
+            // Añadir
+            _context.RelacionEntrenamientoRecetas.Add(new RelacionEntrenamientoRecetas
+            {
+                PlanEntrenamientoId = planId,
+                RecetasId = recetaId
+            });
+            TempData["Message"] = "Receta añadida como recomendada.";
+        }
+        else
+        {
+            // Quitar
+            _context.RelacionEntrenamientoRecetas.Remove(relacion);
+            TempData["Message"] = "Receta eliminada de las recomendadas.";
+        }
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(EditRecetasToPlan), new { id = planId });
+    }
+
     //Delete/
     [Authorize(Roles = "ADMIN,EDITPLANES")]
     public async Task<IActionResult> Delete(int? id)
@@ -248,6 +318,7 @@ public class PlanEntrenamientoController : Controller
             _context.PlanEntranamiento.Remove(planEntrena);
             await _context.SaveChangesAsync();
         }
+        TempData["Message"] = "Plan de entrenamiento eliminado correctamente.";
         return RedirectToAction(nameof(Index));
     }
 
@@ -282,6 +353,7 @@ public class PlanEntrenamientoController : Controller
         _context.UserPlanesEntrenamientos.Add(favorite);
         await _context.SaveChangesAsync();
 
+        TempData["Message"] = "Plan de entrenamiento añadido a tus selecciones.";
         return RedirectToAction("Index");
     }
 

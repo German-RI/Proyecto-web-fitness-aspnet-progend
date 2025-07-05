@@ -120,10 +120,13 @@ public class SeleccionRecetas : Controller
                 tdea.Image_Portada = nombreArchivo;
             }
 
+            TempData["Message"] = "Receta creada exitosamente.";
             _context.Add(tdea);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        
         return View(tdea);
     }
     /*Detaalles*/
@@ -231,9 +234,11 @@ public class SeleccionRecetas : Controller
                     throw;
                 }
             }
+            TempData["Message"] = "Actualización exitosa.";
             return RedirectToAction(nameof(Index));
         }
 
+        
         return View(recetas);
     }
     private bool RecetasExists(int id)
@@ -269,6 +274,7 @@ public class SeleccionRecetas : Controller
             _context.Recetas.Remove(selecreceta);
             await _context.SaveChangesAsync();
         }
+        TempData["Message"] = "Borrado exitosamente.";
         return RedirectToAction(nameof(Index));
     }
 
@@ -290,7 +296,7 @@ public class SeleccionRecetas : Controller
             .FirstOrDefaultAsync(f => f.UserId == user.Id && f.RecetaId == Id);
         if (existingFavorite != null)
         {
-            TempData["Message"] = "Esta receta ya está en tus favoritos.";
+            TempData["Message"] = "Esta receta ya está en tus elecciones.";
             return RedirectToAction("Index");
         }
 
@@ -303,6 +309,7 @@ public class SeleccionRecetas : Controller
         _context.UserRecetas.Add(favorite);
         await _context.SaveChangesAsync();
 
+        TempData["Message"] = "Receta añadida a tus elecciones.";
         return RedirectToAction("Index");
     }
 

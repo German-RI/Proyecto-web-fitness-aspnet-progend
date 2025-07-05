@@ -37,6 +37,6 @@ $(document).ready(function () {
     if ($("#message").length) {
         setTimeout(function () {
             $("#message").fadeOut("slow");
-        }, 10000);
+        }, 10000); // 10 segundos
     }
 });

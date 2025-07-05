@@ -313,11 +313,11 @@ input[type="number"] {
 .alert-float {
   /* Estilo para las alertas */
   position: fixed;
-  top: 20px;
+  top: calc(56px + 20px); /* 56px de navbar + 20px de margen */
   right: 20px;
-  background-color: #dc3545;
+  background-color: #8b131f8a;
   /* Color rojo de alerta */
-  color: white;
+  color: white; 
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);

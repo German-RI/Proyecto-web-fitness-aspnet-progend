@@ -3,18 +3,19 @@
 @{
     ViewData["Title"] = "Eliminar Plan";
 }
+<div class="container mt-5 fondo-receta">
+    <h1 class="mb-4 colo-titulo">Eliminar Plan de Receta</h1>
 
-<h1>Eliminar Plan de Receta</h1>
-
-<div>
-    <h4>¿Estás seguro que deseas eliminar esta Receta?</h4>
     <div>
-        <h5>@Model.Nombre</h5>
-        <p>@Model.Instrucciones</p>
+        <h4 class="mb-4 colo-titulo">¿Estás seguro que deseas eliminar esta Receta?</h4>
+        <div>
+            <h5>@Model.Nombre</h5>
+            <p>@Model.Instrucciones</p>
+        </div>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
     </div>
-    <form asp-action="Delete" method="post">
-        <input type="hidden" asp-for="Id" />
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-    </form>
 </div>

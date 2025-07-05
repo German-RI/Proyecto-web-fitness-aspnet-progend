@@ -6,6 +6,10 @@
     ViewData["Title"] = "Index";
 }
 <div class="container mt-5 fondo-receta">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info alert-float" >@TempData["Message"]</div>
+    }
     <h1 class="mb-4 colo-titulo">Recetas</h1>
     @if (User.IsInRole("ADMIN")
         || User.IsInRole("EDITRECETA"))

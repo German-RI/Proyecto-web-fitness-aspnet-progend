@@ -1,0 +1,71 @@
+@model List<Recetas>
+@{
+    var recomendadas = (List<Recetas>)ViewBag.RecetasRecomendadas;
+    var recomendadasIds = (HashSet<int>)ViewBag.RecomendadasIds;
+    var planId = (int)ViewBag.PlanId;
+    var search = (string)ViewBag.Search;
+}
+
+<h2>Recetas recomendadas para el plan</h2>
+@if (recomendadas.Any())
+{
+    <div class="row">
+        @foreach (var receta in recomendadas)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <img src="~/imagenes/@receta.Image_Portada" class="card-img-top" alt="@receta.Nombre" />
+                    <div class="card-body">
+                        <h5 class="card-title">@receta.Nombre</h5>
+                        <form asp-action="ToggleRecetaRecomendada" method="post">
+                            <input type="hidden" name="planId" value="@planId" />
+                            <input type="hidden" name="recetaId" value="@receta.Id" />
+                            <button type="submit" class="btn btn-danger">Quitar</button>
+                        </form>
+                        <a asp-controller="SeleccionRecetas" asp-action="Details" asp-route-id="@receta.Id" class="btn btn-info btn-sm mt-2">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">No hay recetas recomendadas para este plan.</div>
+}
+
+<hr />
+
+<h3>Buscar y añadir recetas</h3>
+<form method="get">
+    <input type="hidden" name="id" value="@planId" />
+    <input type="text" name="search" value="@search" placeholder="Buscar receta..." class="form-control mb-2" />
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<div class="row">
+    @foreach (var receta in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="~/imagenes/@receta.Image_Portada" class="card-img-top" alt="@receta.Nombre" />
+                <div class="card-body">
+                    <h5 class="card-title">@receta.Nombre</h5>
+                    @if (!recomendadasIds.Contains(receta.Id))
+                    {
+                        <form asp-action="ToggleRecetaRecomendada" method="post">
+                            <input type="hidden" name="planId" value="@planId" />
+                            <input type="hidden" name="recetaId" value="@receta.Id" />
+                            <button type="submit" class="btn btn-success">Añadir</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Ya recomendada</span>
+                    }
+                    <a asp-controller="SeleccionRecetas" asp-action="Details" asp-route-id="@receta.Id" class="btn btn-info btn-sm mt-2">Ver detalles</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

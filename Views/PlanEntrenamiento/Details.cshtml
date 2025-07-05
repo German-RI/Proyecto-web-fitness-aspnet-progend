@@ -81,13 +81,43 @@
             @Html.DisplayFor(model => model.Nivel)
         </dd>
 
+        <h4 class="mt-4">Recetas recomendadas para este plan de entrenamiento</h4>
+        @if (ViewBag.RecetasRecomendadas != null && ((List<ProyectoPROGEND.Models.Recetas>)ViewBag.RecetasRecomendadas).Any())
+        {
+            <div class="row">
+                @foreach (var receta in (List<ProyectoPROGEND.Models.Recetas>)ViewBag.RecetasRecomendadas)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <img src="~/imagenes/@receta.Image_Portada" class="card-img-top" alt="@receta.Nombre" />
+                            <div class="card-body">
+                                <h5 class="card-title">@receta.Nombre</h5>
+                                <a asp-controller="Recetas" asp-action="Details" asp-route-id="@receta.Id" class="btn btn-info btn-sm mt-2">Ver detalles</a>
+                                <a asp-action="AddRecetaToFavorites" asp-controller="SeleccionRecetas" asp-route-id="@receta.Id"
+                                class="btn btn-outline-success nav-link ">Select
+                                Receta</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning">No hay recetas recomendadas para este plan de entrenamiento.</div>
+        }
+
 
     </dl>
 
     <div class="container">
         @if (User.IsInRole("ADMIN")
             || User.IsInRole("EDITPLANES")){
-            <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model.Id">Editar</a> 
+            <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model.Id">Editar</a>
+             
+            <a asp-action="EditRecetasToPlan" class="btn btn-outline-success" asp-route-id="@Model.Id">
+                Editar recetas recomendadas
+            </a>
         }
         |
         <a asp-action="Index" class="btn btn-outline-secondary">Regresar</a> |
