@@ -40,3 +40,46 @@ $(document).ready(function () {
         }, 10000); // 10 segundos
     }
 });
+
+
+//Funciones que llaman a los controladores para agregar planes o recetas seleccionadas sin que la pagina web sufra un reload
+
+function mostrarToast(mensaje, tipo = "success") {
+    // Elimina cualquier toast anterior
+    document.querySelectorAll('.alert-float').forEach(e => e.remove());
+
+    const toast = document.createElement("div");
+    toast.innerText = mensaje;
+    toast.className = "alert-float alert-" + tipo;
+    document.body.appendChild(toast);
+    toast.style.display = "block";
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// Para planes
+function agregarPlanSeleccionado(id) {
+    fetch(`/PlanEntrenamiento/AddPlanToFavorites/${id}`, {
+        method: "POST",
+        headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "RequestVerificationToken": document.querySelector('input[name="__RequestVerificationToken"]')?.value
+        }
+    })
+    .then(res => res.text())
+    .then(msg => mostrarToast(msg || "Plan añadido a tus selecciones"))
+    .catch(() => mostrarToast("Error al agregar plan", "danger"));
+}
+
+// Para recetas
+function agregarRecetaSeleccionada(id) {
+    fetch(`/SeleccionRecetas/AddRecetaToFavorites/${id}`, {
+        method: "POST",
+        headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "RequestVerificationToken": document.querySelector('input[name="__RequestVerificationToken"]')?.value
+        }
+    })
+    .then(res => res.text())
+    .then(msg => mostrarToast(msg || "Receta añadida a tus selecciones"))
+    .catch(() => mostrarToast("Error al agregar receta", "danger"));
+}

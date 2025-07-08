@@ -26,8 +26,11 @@ public class PlanEntrenamientoController : Controller
         _userManager = userManager;
         _context = context;
     }
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int pageRecom = 1, int pageGen = 1)
     {
+        int pageSizeRecom = 3;
+        int pageSizeGen = 9;
+
         if (!User.Identity.IsAuthenticated)
         {
             return RedirectToPage("/Account/Login", new { area = "Identity" });
@@ -41,22 +44,41 @@ public class PlanEntrenamientoController : Controller
         var userDatos = await _context.DatosUsers
             .OrderByDescending(d => d.RecordDate)
             .FirstOrDefaultAsync(d => d.UserId == user.Id);
-        var recomendaciones = new List<PlanEntranamiento>();
+        var recomendadosQuery = Enumerable.Empty<PlanEntranamiento>().AsQueryable();
         if (userDatos != null)
         {
-            recomendaciones = await _context.PlanEntranamiento
+            recomendadosQuery = _context.PlanEntranamiento
                 .Where(p => userDatos.Peso >= p.PesoMinRecom
                     && userDatos.Peso <= p.PesoMaxRecom
                     && userDatos.Altura >= p.AlturaMinRecom
                     && userDatos.Altura <= p.AlturaMaxRecom
                     && userDatos.RecordDate.Year - user.FechaNacimiento.Year >= p.EdadMinRecom
-                    && userDatos.RecordDate.Year - user.FechaNacimiento.Year <= p.EdadMaxRecom)
-                .ToListAsync();
+                    && userDatos.RecordDate.Year - user.FechaNacimiento.Year <= p.EdadMaxRecom);
         }
+        int totalRecom = await recomendadosQuery.CountAsync();
+        var recomendados = await recomendadosQuery
+            .OrderBy(p => p.Nombre)
+            .Skip((pageRecom - 1) * pageSizeRecom)
+            .Take(pageSizeRecom)
+            .ToListAsync();
+
+        // General paginado
+        var totalGen = await _context.PlanEntranamiento.CountAsync();
+        var generales = await _context.PlanEntranamiento
+            .OrderBy(p => p.Nombre)
+            .Skip((pageGen - 1) * pageSizeGen)
+            .Take(pageSizeGen)
+            .ToListAsync();
+
+        ViewBag.TotalPagesRecom = (int)Math.Ceiling((double)totalRecom / pageSizeRecom);
+        ViewBag.CurrentPageRecom = pageRecom;
+        ViewBag.TotalPagesGen = (int)Math.Ceiling((double)totalGen / pageSizeGen);
+        ViewBag.CurrentPageGen = pageGen;
+
         var viewModel = new PlanesYrecetasViewModel
         {
-            Planes = await _context.PlanEntranamiento.ToListAsync(),
-            RecomendacionPlanes = recomendaciones
+            Planes = generales,
+            RecomendacionPlanes = recomendados
         };
 
         return View(viewModel);
@@ -232,9 +254,11 @@ public class PlanEntrenamientoController : Controller
 
     // Mostrar y editar recetas recomendadas para un plan
     [Authorize(Roles = "ADMIN,EDITPLANES")]
-    public async Task<IActionResult> EditRecetasToPlan(int? id, string search = null)
+    public async Task<IActionResult> EditRecetasToPlan(int? id, string search = null, int pageGen = 1)
     {
         if (id == null) return NotFound();
+
+        int pageSizeGen = 9;
 
         var plan = await _context.PlanEntranamiento.FindAsync(id);
         if (plan == null) return NotFound();
@@ -249,10 +273,19 @@ public class PlanEntrenamientoController : Controller
         var recetasQuery = _context.Recetas.AsQueryable();
         if (!string.IsNullOrEmpty(search))
             recetasQuery = recetasQuery.Where(r => r.Nombre.Contains(search));
-        var todasRecetas = await recetasQuery.ToListAsync();
+
+        int totalGen = await recetasQuery.CountAsync();
+        var todasRecetas = await recetasQuery
+            .OrderBy(p => p.Nombre)
+            .Skip((pageGen - 1) * pageSizeGen)
+            .Take(pageSizeGen)
+            .ToListAsync();
 
         // IDs de recetas recomendadas para marcar en la vista
         var recomendadasIds = recetasRecomendadas.Select(r => r.Id).ToHashSet();
+
+        ViewBag.TotalPagesGen = (int)Math.Ceiling((double)totalGen / pageSizeGen);
+        ViewBag.CurrentPageGen = pageGen;
 
         ViewBag.PlanId = id;
         ViewBag.RecetasRecomendadas = recetasRecomendadas;
@@ -324,6 +357,8 @@ public class PlanEntrenamientoController : Controller
 
     public async Task<IActionResult> AddPlanToFavorites(int Id)
     {
+        
+        // Verifica si el usuario está autenticado
         if (!User.Identity.IsAuthenticated)
         {
             return RedirectToPage("/Account/Login", new { area = "Identity" }); // Redirige a la página de login sin modificar nada en los archivos generados
@@ -338,21 +373,33 @@ public class PlanEntrenamientoController : Controller
         // Verifica si el favorito ya existe 
         var existingFavorite = await _context.UserPlanesEntrenamientos
             .FirstOrDefaultAsync(f => f.UserId == user.Id && f.PlanEntrenamientoId == Id);
+        if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+        {
+            if (existingFavorite != null)
+                return Content("Este plan ya está en tus selecciones.");
+            var favorite = new UserPlanesEntrenamiento
+            {
+                UserId = user.Id,
+                PlanEntrenamientoId = Id
+            };
+            _context.UserPlanesEntrenamientos.Add(favorite);
+            await _context.SaveChangesAsync();
+            return Content("Plan de entrenamiento añadido a tus selecciones");
+        }
+
         if (existingFavorite != null)
         {
-            TempData["Message"] = "Este plan ya está en tus favoritos.";
+            TempData["Message"] = "Este plan ya está en tus selecciones.";
             return RedirectToAction("Index");
         }
 
-        var favorite = new UserPlanesEntrenamiento
+        var fav = new UserPlanesEntrenamiento
         {
             UserId = user.Id,
             PlanEntrenamientoId = Id
         };
-
-        _context.UserPlanesEntrenamientos.Add(favorite);
+        _context.UserPlanesEntrenamientos.Add(fav);
         await _context.SaveChangesAsync();
-
         TempData["Message"] = "Plan de entrenamiento añadido a tus selecciones.";
         return RedirectToAction("Index");
     }

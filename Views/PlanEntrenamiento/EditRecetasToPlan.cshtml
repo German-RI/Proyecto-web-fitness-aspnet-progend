@@ -22,7 +22,8 @@
                             <input type="hidden" name="recetaId" value="@receta.Id" />
                             <button type="submit" class="btn btn-danger">Quitar</button>
                         </form>
-                        <a asp-controller="SeleccionRecetas" asp-action="Details" asp-route-id="@receta.Id" class="btn btn-info btn-sm mt-2">Ver detalles</a>
+                        <a asp-controller="SeleccionRecetas" asp-action="Details" asp-route-id="@receta.Id"
+                            class="btn btn-info btn-sm mt-2">Ver detalles</a>
                     </div>
                 </div>
             </div>
@@ -42,13 +43,13 @@ else
     <input type="text" name="search" value="@search" placeholder="Buscar receta..." class="form-control mb-2" />
     <button type="submit" class="btn btn-primary">Buscar</button>
 </form>
-
-<div class="row">
+<br />
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     @foreach (var receta in Model)
     {
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <img src="~/imagenes/@receta.Image_Portada" class="card-img-top" alt="@receta.Nombre" />
+        <div class="col">
+            <div class="card h-100 PlanEntranamien">
+                <img src="~/imagenes/@receta.Image_Portada" class="card-img-top  receta-imagen" alt="@receta.Nombre" />
                 <div class="card-body">
                     <h5 class="card-title">@receta.Nombre</h5>
                     @if (!recomendadasIds.Contains(receta.Id))
@@ -63,9 +64,65 @@ else
                     {
                         <span class="badge bg-success">Ya recomendada</span>
                     }
-                    <a asp-controller="SeleccionRecetas" asp-action="Details" asp-route-id="@receta.Id" class="btn btn-info btn-sm mt-2">Ver detalles</a>
+                    <a asp-controller="SeleccionRecetas" asp-action="Details" asp-route-id="@receta.Id"
+                        class="btn btn-info btn-sm mt-2">Ver detalles</a>
                 </div>
             </div>
         </div>
     }
 </div>
+@{
+    int totalPages = (int)ViewBag.TotalPagesGen;
+    int currentPage = (int)ViewBag.CurrentPageGen;
+    int maxPagesToShow = 5;
+    int startPage = Math.Max(1, currentPage - 2);
+    int endPage = Math.Min(totalPages, startPage + maxPagesToShow - 1);
+    if (endPage - startPage < maxPagesToShow - 1)
+    {
+        startPage = Math.Max(1, endPage - maxPagesToShow + 1);
+    }
+}
+@if (totalPages > 1)
+{
+    <nav>
+        <ul class="pagination justify-content-center">
+            @if (currentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="EditRecetasToPlan" asp-route-pageGen="1"
+                        asp-route-pageRecom="@ViewBag.CurrentPageRecom">&laquo;</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" asp-action="EditRecetasToPlan" asp-route-pageGen="@(currentPage - 1)"
+                        asp-route-pageRecom="@ViewBag.CurrentPageRecom">&lsaquo;</a>
+                </li>
+            }
+            @if (startPage > 1)
+            {
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+            }
+            @for (int i = startPage; i <= endPage; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a class="page-link" asp-action="EditRecetasToPlan" asp-route-pageGen="@i"
+                        asp-route-pageRecom="@ViewBag.CurrentPageRecom">@i</a>
+                </li>
+            }
+            @if (endPage < totalPages)
+            {
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+            }
+            @if (currentPage < totalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="EditRecetasToPlan" asp-route-pageGen="@(currentPage + 1)"
+                        asp-route-pageRecom="@ViewBag.CurrentPageRecom">&rsaquo;</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" asp-action="EditRecetasToPlan" asp-route-pageGen="@totalPages"
+                        asp-route-pageRecom="@ViewBag.CurrentPageRecom">&raquo;</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

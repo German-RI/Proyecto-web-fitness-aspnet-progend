@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 namespace ProyectoPROGEND.Controllers;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
@@ -21,8 +22,11 @@ public class SeleccionRecetas : Controller
         _userManager = userManager;
         _context = context;
     }
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int pageRecom = 1, int pageGen = 1)
     {
+        int pageSizeRecom = 3;
+        int pageSizeGen = 9;
+
         if (!User.Identity.IsAuthenticated)
         {
             return RedirectToPage("/Account/Login", new { area = "Identity" });
@@ -37,14 +41,13 @@ public class SeleccionRecetas : Controller
             .OrderByDescending(d => d.RecordDate)
             .FirstOrDefaultAsync(d => d.UserId == user.Id);
 
-        var recomendaciones = new List<Recetas>();
+        var recomendadosQuery = Enumerable.Empty<Recetas>().AsQueryable();
         if (userDatos == null || userDatos.CaloriasConsumidas == 0)
-        { // Recomendaciones básicas si no hay consumo registrado 
-            recomendaciones = await _context.Recetas
+        { // Recomendaciones básicas si no hay consumo registrado
+            recomendadosQuery = _context.Recetas
             .Where(r => r.Calorias <= 500
             && r.Proteinas >= 10
-            && r.Carbohidratos <= 70)
-            .ToListAsync();
+            && r.Carbohidratos <= 70);
         }
         else
         {
@@ -58,18 +61,37 @@ public class SeleccionRecetas : Controller
             {
                 bmr = 10 * userDatos.Peso + 6.25 * userDatos.Altura - 5 * (DateTime.Today.Year - user.FechaNacimiento.Year) - 161;
             }
-            recomendaciones = await _context.Recetas
+            recomendadosQuery = _context.Recetas
                 .Where(r => r.Calorias <= (bmr * 0.75)
                     && r.Calorias >= (bmr * 0.25)
                     && r.Proteinas >= 0.2 * r.Calorias / 4
-                    && r.Carbohidratos <= 0.65 * r.Calorias / 4)
-                .ToListAsync();
+                    && r.Carbohidratos <= 0.65 * r.Calorias / 4);
         }
+
+        int totalRecom = await recomendadosQuery.CountAsync();
+        var recomendados = await recomendadosQuery
+            .OrderBy(p => p.Nombre)
+            .Skip((pageRecom - 1) * pageSizeRecom)
+            .Take(pageSizeRecom)
+            .ToListAsync();
+
+        // General paginado
+        var totalGen = await _context.Recetas.CountAsync();
+        var generales = await _context.Recetas
+            .OrderBy(p => p.Nombre)
+            .Skip((pageGen - 1) * pageSizeGen)
+            .Take(pageSizeGen)
+            .ToListAsync();
+
+        ViewBag.TotalPagesRecom = (int)Math.Ceiling((double)totalRecom / pageSizeRecom);
+        ViewBag.CurrentPageRecom = pageRecom;
+        ViewBag.TotalPagesGen = (int)Math.Ceiling((double)totalGen / pageSizeGen);
+        ViewBag.CurrentPageGen = pageGen;
 
         var viewModel = new PlanesYrecetasViewModel
         {
-            Recetas = await _context.Recetas.ToListAsync(),
-            RecomendacionRecetas = recomendaciones
+            Recetas = generales,
+            RecomendacionRecetas = recomendados
         };
 
         return View(viewModel);
@@ -126,7 +148,7 @@ public class SeleccionRecetas : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        
+
         return View(tdea);
     }
     /*Detaalles*/
@@ -238,7 +260,7 @@ public class SeleccionRecetas : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        
+
         return View(recetas);
     }
     private bool RecetasExists(int id)
@@ -294,6 +316,21 @@ public class SeleccionRecetas : Controller
         // Verifica si el favorito ya existe 
         var existingFavorite = await _context.UserRecetas
             .FirstOrDefaultAsync(f => f.UserId == user.Id && f.RecetaId == Id);
+
+        if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+        {
+            if (existingFavorite != null)
+                return Content("Esta receta ya está en tus favoritos.");
+            var tfavorite = new UserRecetas
+            {
+                UserId = user.Id,
+                RecetaId = Id
+            };
+            _context.UserRecetas.Add(tfavorite);
+            await _context.SaveChangesAsync();
+            return Content("Receta añadida a tus selecciones");
+        }
+
         if (existingFavorite != null)
         {
             TempData["Message"] = "Esta receta ya está en tus elecciones.";
@@ -309,7 +346,9 @@ public class SeleccionRecetas : Controller
         _context.UserRecetas.Add(favorite);
         await _context.SaveChangesAsync();
 
-        TempData["Message"] = "Receta añadida a tus elecciones.";
+        if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            return Content("Receta añadida a tus selecciones");
+        TempData["Message"] = "Receta añadida a tus selecciones.";
         return RedirectToAction("Index");
     }
 
