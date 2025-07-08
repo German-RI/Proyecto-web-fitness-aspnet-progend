@@ -84,7 +84,6 @@ public class DatosUsuariocontroller : Controller
             .Where(d => d.UserId == user.Id)
             .OrderByDescending(d => d.RecordDate)
             .ToListAsync();
-
         return View(datosUsuarioHistorial);
     }
 
@@ -134,8 +133,10 @@ public class DatosUsuariocontroller : Controller
             existingDatos.Altura = datos.Altura;
             _context.DatosUsers.Update(existingDatos);
         }
+
+        TempData["Message"] = "Datos actualizados correctamente.";
         await _context.SaveChangesAsync();
-        return RedirectToAction("Index"); // Redirige a una vista adecuada }
+        return RedirectToAction("Index"); // Redirige a una vista adecuada 
     }
 
     public async Task<IActionResult> RemoveRecetasFromFavorites(int Id)
@@ -160,6 +161,7 @@ public class DatosUsuariocontroller : Controller
             await _context.SaveChangesAsync();
         }
 
+        TempData["Message"] = "Receta eliminada de favoritos correctamente.";
         return RedirectToAction("Index");
     }
 
@@ -185,6 +187,7 @@ public class DatosUsuariocontroller : Controller
             await _context.SaveChangesAsync();
         }
 
+        TempData["Message"] = "Plan de entrenamiento eliminado correctamente.";
         return RedirectToAction("Index");
     }
 

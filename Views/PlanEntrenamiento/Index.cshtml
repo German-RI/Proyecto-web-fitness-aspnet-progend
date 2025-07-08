@@ -6,6 +6,10 @@
     ViewData["Title"] = "Index";
 }
 <div class="container mt-5 fondo-planesentrena">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info alert-float">@TempData["Message"]</div>
+    }
     <h1 class="mb-4 colo-titulo">Planes de Entrenamiento</h1>
     @if (User.IsInRole("ADMIN")
         || User.IsInRole("EDITPLANES"))
@@ -32,10 +36,10 @@
                         <div class="btn-grup">
                             <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link">View
                                 Details</a>
-                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id"
-                                class="btn btn-outline-success nav-link">Select Plan</a>
+                            <a href="#" class="btn btn-outline-success nav-link"
+                                onclick="agregarPlanSeleccionado(@plan.Id); return false;">Select Plan</a>
                             @if (User.IsInRole("ADMIN")
-                                || User.IsInRole("EDITPLANES"))
+                                                    || User.IsInRole("EDITPLANES"))
                             {
                                 <a asp-action="Delete" asp-route-id="@plan.Id"
                                     class="btn btn-outline-danger nav-link">Eliminar</a>
@@ -48,6 +52,62 @@
             </div>
         }
     </div>
+    <br>
+    @{
+        int totalPagesRecom = (int)ViewBag.TotalPagesRecom;
+        int currentPageRecom = (int)ViewBag.CurrentPageRecom;
+        int maxPagesToShowRecom = 5;
+        int startPageRecom = Math.Max(1, currentPageRecom - 2);
+        int endPageRecom = Math.Min(totalPagesRecom, startPageRecom + maxPagesToShowRecom - 1);
+        if (endPageRecom - startPageRecom < maxPagesToShowRecom - 1)
+        {
+            startPageRecom = Math.Max(1, endPageRecom - maxPagesToShowRecom + 1);
+        }
+    }
+    @if (totalPagesRecom > 1)
+    {
+        <nav>
+            <ul class="pagination justify-content-center">
+                @if (currentPageRecom > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-pageRecom="1"
+                            asp-route-pageGen="@ViewBag.CurrentPageGen">&laquo;</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-pageRecom="@(currentPageRecom - 1)"
+                            asp-route-pageGen="@ViewBag.CurrentPageGen">&lsaquo;</a>
+                    </li>
+                }
+                @if (startPageRecom > 1)
+                {
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                }
+                @for (int i = startPageRecom; i <= endPageRecom; i++)
+                {
+                    <li class="page-item @(i == currentPageRecom ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-pageRecom="@i"
+                            asp-route-pageGen="@ViewBag.CurrentPageGen">@i</a>
+                    </li>
+                }
+                @if (endPageRecom < totalPagesRecom)
+                {
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                }
+                @if (currentPageRecom < totalPagesRecom)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-pageRecom="@(currentPageRecom + 1)"
+                            asp-route-pageGen="@ViewBag.CurrentPageGen">&rsaquo;</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-pageRecom="@totalPagesRecom"
+                            asp-route-pageGen="@ViewBag.CurrentPageGen">&raquo;</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
     <br>
     <h1 class="mb-3 colo-titulo">Todos los planes:</h1><br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -65,10 +125,10 @@
                         <div class="btn-grup">
                             <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View
                                 Details</a>
-                            <a asp-action="AddPlanToFavorites" asp-route-id="@plan.Id"
-                                class="btn btn-outline-success nav-link">Select Plan</a>
+                            <a href="#" class="btn btn-outline-success nav-link"
+                                onclick="agregarPlanSeleccionado(@plan.Id); return false;">Select Plan</a>
                             @if (User.IsInRole("ADMIN")
-                                || User.IsInRole("EDITPLANES"))
+                                                    || User.IsInRole("EDITPLANES"))
                             {
                                 <a asp-action="Delete" asp-route-id="@plan.Id"
                                     class="btn btn-outline-danger nav-link">Eliminar</a>
@@ -81,4 +141,59 @@
             </div>
         }
     </div>
+    @{
+        int totalPages = (int)ViewBag.TotalPagesGen;
+        int currentPage = (int)ViewBag.CurrentPageGen;
+        int maxPagesToShow = 5;
+        int startPage = Math.Max(1, currentPage - 2);
+        int endPage = Math.Min(totalPages, startPage + maxPagesToShow - 1);
+        if (endPage - startPage < maxPagesToShow - 1)
+        {
+            startPage = Math.Max(1, endPage - maxPagesToShow + 1);
+        }
+    }
+    @if (totalPages > 1)
+    {
+        <nav>
+            <ul class="pagination justify-content-center">
+                @if (currentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-pageGen="1"
+                            asp-route-pageRecom="@ViewBag.CurrentPageRecom">&laquo;</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-pageGen="@(currentPage - 1)"
+                            asp-route-pageRecom="@ViewBag.CurrentPageRecom">&lsaquo;</a>
+                    </li>
+                }
+                @if (startPage > 1)
+                {
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                }
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item @(i == currentPage ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-pageGen="@i"
+                            asp-route-pageRecom="@ViewBag.CurrentPageRecom">@i</a>
+                    </li>
+                }
+                @if (endPage < totalPages)
+                {
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                }
+                @if (currentPage < totalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-pageGen="@(currentPage + 1)"
+                            asp-route-pageRecom="@ViewBag.CurrentPageRecom">&rsaquo;</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-pageGen="@totalPages"
+                            asp-route-pageRecom="@ViewBag.CurrentPageRecom">&raquo;</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
 </div>

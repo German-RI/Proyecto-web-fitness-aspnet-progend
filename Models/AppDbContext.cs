@@ -18,6 +18,7 @@ namespace ProyectoPROGEND.Models
         public DbSet<UserPlanesEntrenamiento> UserPlanesEntrenamientos { get; set; }
 
         public DbSet<DatosVistaInicio> DatosVistaInicio { get; set; }
+        public DbSet<RelacionEntrenamientoRecetas> RelacionEntrenamientoRecetas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

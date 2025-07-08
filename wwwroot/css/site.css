@@ -311,20 +311,18 @@ input[type="number"] {
 }
 
 .alert-float {
-  /* Estilo para las alertas */
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #dc3545;
-  /* Color rojo de alerta */
-  color: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  display: none;
-  /* Oculto por defecto */
-  z-index: 9999;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: #198754;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: none;
 }
+.alert-danger { background-color: #dc3545 !important; }
 
 h1.colo-titulo {
   margin-bottom: 20px;
