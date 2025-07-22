@@ -32,12 +32,13 @@
                         <p class="card-text">
                             <span class="badge bg-primary">Nivel: @plan.Nivel</span>
                             <span class="badge bg-secondary">Dificultad: @plan.Dificultad</span>
+                            <span class="badge bg-success">Tipo: @plan.TipoEntrenamiento</span>
+                            <span class="badge bg-primary">Frecuencia : @plan.Frecuencia </span>
                         </p>
                         <div class="btn-grup">
-                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link">View
-                                Details</a>
+                            <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link">Ver detalles</a>
                             <a href="#" class="btn btn-outline-success nav-link"
-                                onclick="agregarPlanSeleccionado(@plan.Id); return false;">Select Plan</a>
+                                onclick="agregarPlanSeleccionado(@plan.Id); return false;">Seleccionar plan</a>
                             @if (User.IsInRole("ADMIN")
                                                     || User.IsInRole("EDITPLANES"))
                             {
@@ -121,7 +122,8 @@
                         <p class="card-text">
                             <span class="badge bg-primary">Nivel: @plan.Nivel</span>
                             <span class="badge bg-secondary">Dificultad: @plan.Dificultad</span>
-                        </p>
+                            <span class="badge bg-success">Tipo de entrenamiento: @plan.TipoEntrenamiento</span>
+                            <span class="badge bg-primary">Frecuencia : @plan.Frecuencia </span>
                         <div class="btn-grup">
                             <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View
                                 Details</a>

@@ -120,10 +120,10 @@
                     <div class="card-body">
                         <h5 class="card-title">@plan.Nombre</h5>
                         <p class="card-text">
-                            <span class="badge bg-primary">KCal: @plan.Calorias</span><br>
-                            <span class="badge bg-primary">Proteinas: @plan.Proteinas</span><br>
-                            <span class="badge bg-primary">Carbohidratos: @plan.Carbohidratos</span>
-                            <li class="list-group-item PlanEntranamien">@plan.Ingredientes</li>
+                            <span class="badge bg-danger">KCal: @plan.Calorias</span><br>
+                            <span class="badge bg-success">Proteinas: @plan.Proteinas</span><br>
+                            <span class="badge bg-info">Carbohidratos: @plan.Carbohidratos</span>
+                            <span class="badge bg-secondary">Tipo: @plan.TipoComida</span><br>
                         </p>
                         <div class="btn-grup">
                             <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-outline-primary nav-link ">View

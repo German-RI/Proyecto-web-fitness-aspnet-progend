@@ -60,7 +60,7 @@
                 .Replace("\r", "<br/>")
                 .Replace("\n", "<br/>")
                 .Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;") // Tabuladores
-                .Replace("  ", "&nbsp;&nbsp;")) // Espacios múltiples
+                .Replace("  ", "&nbsp;&nbsp;")) <!--Espacios múltiples-->
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Dificultad)
@@ -84,18 +84,19 @@
         <h4 class="mt-4">Recetas recomendadas para este plan de entrenamiento</h4>
         @if (ViewBag.RecetasRecomendadas != null && ((List<ProyectoPROGEND.Models.Recetas>)ViewBag.RecetasRecomendadas).Any())
         {
-            <div class="row">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 @foreach (var receta in (List<ProyectoPROGEND.Models.Recetas>)ViewBag.RecetasRecomendadas)
                 {
                     <div class="col-md-4">
-                        <div class="card mb-3">
-                            <img src="~/imagenes/@receta.Image_Portada" class="card-img-top" alt="@receta.Nombre" />
+                        <div class="card h-100 PlanEntranamien">
+                            <img src="~/imagenes/@receta.Image_Portada" class="card-img-top receta-imagen" alt="@receta.Nombre" />
                             <div class="card-body">
                                 <h5 class="card-title">@receta.Nombre</h5>
-                                <a asp-controller="Recetas" asp-action="Details" asp-route-id="@receta.Id" class="btn btn-info btn-sm mt-2">Ver detalles</a>
-                                <a asp-action="AddRecetaToFavorites" asp-controller="SeleccionRecetas" asp-route-id="@receta.Id"
-                                class="btn btn-outline-success nav-link ">Select
-                                Receta</a>
+                                <a asp-controller="SeleccionRecetas" asp-action="Details" asp-route-id="@receta.Id"  class="btn btn-outline-primary nav-link">Ver detalles</a>
+                                <br>
+                                <br>
+                                <a href="#" class="btn btn-outline-success nav-link"
+                                onclick="agregarRecetaSeleccionada(@receta.Id); return false;">Select Receta</a>
                             </div>
                         </div>
                     </div>
@@ -113,17 +114,17 @@
     <div class="container">
         @if (User.IsInRole("ADMIN")
             || User.IsInRole("EDITPLANES")){
-            <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model.Id">Editar</a>
+            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.Id">Editar</a>
              
-            <a asp-action="EditRecetasToPlan" class="btn btn-outline-success" asp-route-id="@Model.Id">
+            <a asp-action="EditRecetasToPlan" class="btn btn-success" asp-route-id="@Model.Id">
                 Editar recetas recomendadas
             </a>
         }
         |
-        <a asp-action="Index" class="btn btn-outline-secondary">Regresar</a> |
+        <a asp-action="Index" class="btn btn-secondary">Regresar a inicio de Planes</a> |
         @if (User.IsInRole("ADMIN")
             || User.IsInRole("EDITPLANES")){
-            <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@Model.Id">Borrar</a>
+            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@Model.Id">Borrar</a>
         }
         
     </div>

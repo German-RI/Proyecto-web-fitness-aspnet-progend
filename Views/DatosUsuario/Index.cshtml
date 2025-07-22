@@ -62,12 +62,14 @@
                         <p class="card-text">
                             <span class="badge bg-primary">Nivel: @plan.Nivel</span>
                             <span class="badge bg-secondary">Dificultad: @plan.Dificultad</span>
+                            <span class="badge bg-success">Tipo: @plan.TipoEntrenamiento</span>
+                            <span class="badge bg-primary">Frecuencia : @plan.Frecuencia </span>
                         </p>
                         <div class="btn-grup">
                             <a asp-action="Details" asp-controller="PlanEntrenamiento" asp-route-id="@plan.Id"
-                                    class="btn btn-outline-primary">View Details</a>
+                                    class="btn btn-outline-primary nav-link">Ver detalles</a>
                             <a asp-action="RemovePlanFromFavorites" asp-route-id="@plan.Id"
-                                    class="btn btn-danger">Quitar plan</a>
+                                    class="btn btn-danger nav-link">Quitar plan</a>
                         </div>
                     </div>
                 </div>
@@ -91,16 +93,16 @@
                         <div class="card-body">
                             <h5 class="card-title">@item.Nombre</h5>
                             <p class="card-text">
-                                <span class="badge bg-primary">KCal: @item.Calorias</span><br>
-                                <span class="badge bg-primary">Proteinas: @item.Proteinas</span><br>
-                                <span class="badge bg-primary">Carbohidratos: @item.Carbohidratos</span>
-                                <li class="list-group-item PlanEntranamien">@item.Ingredientes</li>
+                               <span class="badge bg-danger">KCal: @item.Calorias</span><br>
+                                <span class="badge bg-success">Proteinas: @item.Proteinas</span><br>
+                                <span class="badge bg-info">Carbohidratos: @item.Carbohidratos</span>
+                                <span class="badge bg-secondary">Tipo: @item.TipoComida</span><br>
                             </p>
                             <div class="btn-grup">
                                 <a asp-action="Details" asp-controller="SeleccionRecetas" asp-route-id="@item.Id"
-                                    class="btn btn-outline-primary">View Details</a>
+                                    class="btn btn-outline-info nav-link">View Details</a>
                                 <a asp-action="RemoveRecetasFromFavorites" asp-route-id="@item.Id"
-                                    class="btn btn-danger">Quitar Receta</a>
+                                    class="btn btn-danger nav-link">Quitar Receta</a>
 
                             </div>
                         </div>
