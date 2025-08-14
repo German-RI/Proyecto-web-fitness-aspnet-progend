@@ -104,7 +104,7 @@
             || User.IsInRole("EDITRECETA")){
             <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model.Id">Editar</a> 
         } |
-        <a asp-action="Index" class="btn btn-outline-secondary">Regresar</a> |
+        <a asp-action="Index" class="btn btn-outline-secondary text-dark">Regresar a inicio de Recetas</a> |
         @if (User.IsInRole("ADMIN")
             || User.IsInRole("EDITRECETA")){
             <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@Model.Id">Borrar</a>
