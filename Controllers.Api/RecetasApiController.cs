@@ -66,7 +66,13 @@ public class RecetasApiController : ControllerBase
             .Take(pageSize)
             .ToListAsync();
 
-        return Ok(new PaginatedResult<Recetas> { Total = total, Items = recetas });
+        var baseUrl = _configuration.GetSection("AppSettings")["PublicBaseUrl"] + "imagenes/";
+
+        return Ok(new
+        {
+            baseUrl = baseUrl,
+            paginacion = new PaginatedResult<Recetas> { Total = total, Items = recetas }
+        });
     }
 
     [HttpGet("todas")]
@@ -80,7 +86,13 @@ public class RecetasApiController : ControllerBase
             .Take(pageSize)
             .ToListAsync();
 
-        return Ok(new PaginatedResult<Recetas> { Total = total, Items = recetas });
+        var baseUrl = _configuration.GetSection("AppSettings")["PublicBaseUrl"] + "imagenes/";
+
+        return Ok(new
+        {
+            baseUrl = baseUrl,
+            paginacion = new PaginatedResult<Recetas> { Total = total, Items = recetas }
+        });
     }
 
     [HttpPost("favorita/{id}")]
@@ -109,7 +121,7 @@ public class RecetasApiController : ControllerBase
         if (receta == null)
             return NotFound();
 
-        var baseUrl = _configuration.GetSection("AppSettings")["PublicBaseUrl"] + "/imagenes/";
+        var baseUrl = _configuration.GetSection("AppSettings")["PublicBaseUrl"] + "imagenes/";
 
         return Ok(new
         {

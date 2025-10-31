@@ -54,7 +54,13 @@ public class PlanesEntrenamientoApiController : ControllerBase
             .Take(pageSize)
             .ToListAsync();
 
-        return Ok(new PaginatedResult<PlanEntranamiento> { Total = total, Items = planes });
+        var baseUrl = _configuration.GetSection("AppSettings")["PublicBaseUrl"] + "imagenes/";
+
+        return Ok(new
+        {
+            baseUrl = baseUrl,
+            paginacion = new PaginatedResult<PlanEntranamiento> { Total = total, Items = planes }
+        });
     }
 
     [HttpGet("todos")]
@@ -68,7 +74,13 @@ public class PlanesEntrenamientoApiController : ControllerBase
             .Take(pageSize)
             .ToListAsync();
 
-        return Ok(new PaginatedResult<PlanEntranamiento> { Total = total, Items = planes });
+        var baseUrl = _configuration.GetSection("AppSettings")["PublicBaseUrl"] + "imagenes/";
+
+        return Ok(new
+        {
+            baseUrl = baseUrl,
+            paginacion = new PaginatedResult<PlanEntranamiento> { Total = total, Items = planes }
+        });
     }
 
     [HttpPost("favorito/{id}")]
@@ -103,7 +115,7 @@ public class PlanesEntrenamientoApiController : ControllerBase
             .Select(pr => pr.Recetas)
             .ToListAsync();
 
-        var baseUrl = _configuration.GetSection("AppSettings")["PublicBaseUrl"] + "/imagenes/";
+        var baseUrl = _configuration.GetSection("AppSettings")["PublicBaseUrl"] + "imagenes/";
 
         return Ok(new
         {
