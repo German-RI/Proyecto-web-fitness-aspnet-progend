@@ -200,7 +200,8 @@ body {
   padding: 1rem;
   /* opcional: para espacio interno */
 }
-.fondo-roles{
+
+.fondo-roles {
   background-image: url("/images/roles.png");
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-size: cover;
@@ -229,6 +230,20 @@ clase estilos de el grupo de botones y se defene que se separe por filas
   flex-direction: column;
   gap: 10px;
   align-items: center;
+}
+
+.btn-grup .btn,
+.btn-grup .btn-outline-primary,
+.btn-grup .btn-outline-success,
+.btn-grup .btn-outline-danger {
+  color: #1d1b34 !important;
+}
+
+.btn-grup .btn:hover,
+.btn-grup .btn-outline-primary:hover,
+.btn-grup .btn-outline-success:hover,
+.btn-grup .btn-outline-danger:hover {
+  color: #3e3267 !important;
 }
 
 .colo-titulo {
@@ -311,18 +326,21 @@ input[type="number"] {
 }
 
 .alert-float {
-    position: fixed;
-    top: 80px;
-    right: 20px;
-    background-color: #198754;
-    color: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    display: none;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #198754;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: none;
 }
-.alert-danger { background-color: #dc3545 !important; }
+
+.alert-danger {
+  background-color: #dc3545 !important;
+}
 
 h1.colo-titulo {
   margin-bottom: 20px;
@@ -439,21 +457,100 @@ h1.colo-titulo {
   /* opcional: para esquinas redondeadas */
   padding: 1rem;
   /* opcional: para espacio interno */
-  display: inline-block ;
+  display: inline-block;
   width: auto !important;
-  
+
 }
+
 .centrar-vista {
   display: flex;
-  justify-content: center;   /* Centra horizontalmente */
-  align-items: center;       /* Centra verticalmente */           /* O usa 100vh si quieres toda la pantalla */
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
+  /* O usa 100vh si quieres toda la pantalla */
 }
-.table{
-   background-color: rgba(131, 194, 226, 0.326);
+
+.table {
+  background-color: rgba(131, 194, 226, 0.326);
   /* más visible pero aún translúcido */
   backdrop-filter: blur(10px);
   /* efecto borroso */
   -webkit-backdrop-filter: blur(10px);
   /* compatibilidad con Safari */
   border-radius: 10px;
+}
+
+/*hacer el badge responsive para vistas de movil.*/
+.card-text {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card-text .badge {
+    margin: 0;
+    font-size: 1rem;
+    white-space: normal;
+}
+
+/* En móvil, apila las badges en columna */
+@media (max-width: 600px) {
+    .card-text {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px 0;
+    }
+    .card-text .badge {
+        width: auto;
+        min-width: 120px;
+        text-align: center;
+    }
+}
+
+/*corrección de titulo al mostrar el correo del usuario.*/
+.colo-titulo.correo-usuario {
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 95vw;
+    white-space: normal;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Limita el ancho y muestra puntos suspensivos en escritorio */
+.usuario-correo {
+    max-width: 180px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* En móvil, permite salto de línea y evita overflow */
+@media (max-width: 600px) {
+    .usuario-correo {
+        max-width: 90vw;
+        white-space: normal;
+        word-break: break-all;
+        text-overflow: clip;
+    }
+}
+
+@media (max-width: 1400px) {
+    .navbar-nav .nav-link {
+        font-size: 0.95rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+@media (max-width: 1200px) {
+    .navbar-nav .nav-link {
+        font-size: 0.85rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+    }
 }

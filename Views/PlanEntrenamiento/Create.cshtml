@@ -8,83 +8,84 @@
     <div class="form-container">
         <form asp-action="Create" enctype="multipart/form-data">
             <div class="form-floating mb-3">
-                <input asp-for="Nombre" placeholder="" class="form-control" >
+                <input asp-for="Nombre" placeholder="" class="form-control">
                 <label for="floatingInput">Nombre De Plan entrenamiento</label>
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input type="file" name="imagen" class="form-control"/>
+                <input type="file" name="imagen" class="form-control" />
+                <label for="floatingInput" style="padding: 2%;">Introduzca una imagen</label>
                 <span class="text-danger">@ViewData.ModelState["imagen"]?.Errors.FirstOrDefault()?.ErrorMessage</span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="TipoEntrenamiento" placeholder="" class="form-control" >
+                <input asp-for="TipoEntrenamiento" placeholder="" class="form-control">
                 <label for="floatingInput">Tipo de Entrenamiento (cardio, fuerza, HIIT, yoga, etc)</label>
                 <span asp-validation-for="TipoEntrenamiento" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Equipamiento" placeholder="" class="form-control" >
+                <input asp-for="Equipamiento" placeholder="" class="form-control">
                 <label for="floatingInput">Equipamiento necesario</label>
                 <span asp-validation-for="Equipamiento" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Frecuencia" placeholder="" class="form-control" >
+                <input asp-for="Frecuencia" placeholder="" class="form-control">
                 <label for="floatingInput">Frecuencia de entrenamiento (diaria, semanal, etc)</label>
                 <span asp-validation-for="Frecuencia" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Objetivo" placeholder="" class="form-control" >
+                <input asp-for="Objetivo" placeholder="" class="form-control">
                 <label for="floatingInput">Objetivo del Plan (pérdida de peso, ganancia muscular, etc)</label>
                 <span asp-validation-for="Objetivo" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Duracion" placeholder="" class="form-control" >
-                <label for="floatingInput">Duracion del Plan</label>
+                <input asp-for="Duracion" placeholder="" class="form-control">
+                <label for="floatingInput">Duración del Plan</label>
                 <span asp-validation-for="Duracion" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Dificultad" placeholder="" class="form-control" >
-                <label for="floatingInput">Rango de dificultad de 1 a 5</label>
+                <input asp-for="Dificultad" placeholder="" class="form-control">
+                <label for="floatingInput">Rango de dificultad (del 1 al 5)</label>
                 <span asp-validation-for="Dificultad" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
                 <input asp-for="Nivel" placeholder="" class="form-control">
-                <label for="floatingInput">Nivel de entrenamiento de 1 a 5</label>
+                <label for="floatingInput">Nivel de entrenamiento (del 1 al 5)</label>
                 <span asp-validation-for="Nivel" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" asp-for="Descripcion" id="descripcionTextarea"
-                    style="height: 100px"></textarea>
-                <label for="floatingTextarea2">Descripcion</label>
+                <textarea class="form-control" placeholder="Leave a comment here" asp-for="Descripcion"
+                    id="descripcionTextarea" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Descripción</label>
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="EdadMinRecom" placeholder="" class="form-control" >
-                <label for="floatingTextarea2">Edad Minima recomendada</label>
+                <input asp-for="EdadMinRecom" placeholder="" class="form-control">
+                <label for="floatingTextarea2">Edad Mínima recomendada</label>
                 <span asp-validation-for="EdadMinRecom" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="EdadMaxRecom" placeholder="" class="form-control" >
-                <label for="floatingTextarea2">Edad MAxima Recomendada</label>
+                <input asp-for="EdadMaxRecom" placeholder="" class="form-control">
+                <label for="floatingTextarea2">Edad Máxima Recomendada</label>
                 <span asp-validation-for="EdadMaxRecom" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="PesoMinRecom" placeholder="" class="form-control" >
-                <label for="floatingTextarea2">Peso Minimo Recomendado</label>
+                <input asp-for="PesoMinRecom" placeholder="" class="form-control">
+                <label for="floatingTextarea2">Peso Mínimo Recomendado</label>
                 <span asp-validation-for="PesoMinRecom" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="PesoMaxRecom" placeholder="" class="form-control" >
-                <label for="floatingTextarea2">Peso Maximo Recomendado</label>
+                <input asp-for="PesoMaxRecom" placeholder="" class="form-control">
+                <label for="floatingTextarea2">Peso Máximo Recomendado</label>
                 <span asp-validation-for="PesoMaxRecom" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="AlturaMinRecom" placeholder="" class="form-control" >
-                <label for="floatingTextarea2">Altura Minima Recomendada</label>
+                <input asp-for="AlturaMinRecom" placeholder="" class="form-control">
+                <label for="floatingTextarea2">Altura Mínima Recomendada</label>
                 <span asp-validation-for="AlturaMinRecom" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="AlturaMaxRecom" placeholder="" class="form-control" >
-                <label for="floatingTextarea2">Altura Maxima Recomendada</label>
+                <input asp-for="AlturaMaxRecom" placeholder="" class="form-control">
+                <label for="floatingTextarea2">Altura Máxima Recomendada</label>
                 <span asp-validation-for="AlturaMaxRecom" class="text-danger"></span>
             </div>
             <button type="submit" value="Create" class="btn btn-primary">Guardar</button>
