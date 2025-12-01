@@ -3,14 +3,21 @@
 @{
     ViewData["Title"] = "Eliminar Plan";
 }
-<div class="container mt-5 fondo-receta">
+<div class="container mt-5 fondo-receta ">
     <h1 class="mb-4 colo-titulo">Eliminar Plan de Receta</h1>
 
     <div>
         <h4 class="mb-4 colo-titulo">¿Estás seguro que deseas eliminar esta Receta?</h4>
-        <div>
-            <h5>@Model.Nombre</h5>
-            <p>@Model.Instrucciones</p>
+        <div class="form-container">
+            <h5 class="colo-titulo">@Model.Nombre</h5>
+            <p style="color: black;">@Html.Raw((Model.Instrucciones ?? string.Empty)
+                .Replace("<", "&lt;")
+                .Replace(">", "&gt;")
+                .Replace("\r\n", "<br/>")
+                .Replace("\r", "<br/>")
+                .Replace("\n", "<br/>")
+                .Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;") // Tabuladores
+                .Replace("  ", "&nbsp;&nbsp;") )<!-- Espacios dobles --></p>
         </div>
         <form asp-action="Delete" method="post">
             <input type="hidden" asp-for="Id" />
