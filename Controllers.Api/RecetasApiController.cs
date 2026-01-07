@@ -33,7 +33,7 @@ public class RecetasApiController : ControllerBase
             .OrderByDescending(d => d.RecordDate)
             .FirstOrDefaultAsync(d => d.UserId == user.Id);
 
-        var recomendadasQuery = Enumerable.Empty<Recetas>().AsQueryable();
+        var recomendadasQuery = _context.Recetas.Where(r => false);
         if (userDatos == null || userDatos.CaloriasConsumidas == 0)
         { // Recomendaciones básicas si no hay consumo registrado
             recomendadasQuery = _context.Recetas
