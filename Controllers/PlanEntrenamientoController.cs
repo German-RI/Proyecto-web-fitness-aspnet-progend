@@ -44,7 +44,7 @@ public class PlanEntrenamientoController : Controller
         var userDatos = await _context.DatosUsers
             .OrderByDescending(d => d.RecordDate)
             .FirstOrDefaultAsync(d => d.UserId == user.Id);
-        var recomendadosQuery = Enumerable.Empty<PlanEntranamiento>().AsQueryable();
+        var recomendadosQuery = _context.PlanEntranamiento.Where(p => false);
         if (userDatos != null)
         {
             recomendadosQuery = _context.PlanEntranamiento

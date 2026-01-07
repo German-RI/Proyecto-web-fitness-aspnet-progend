@@ -104,22 +104,32 @@ public class HomeController : Controller
         if (string.IsNullOrWhiteSpace(url))
             return "";
 
-        // Si ya es un embed, lo dejamos igual
-        if (url.Contains("youtube.com/embed/"))
-            return url;
+        string videoId = "";
 
+        // Si es un link embed, extrae el ID y elimina parámetros
+        if (url.Contains("youtube.com/embed/"))
+        {
+            var uri = new Uri(url);
+            // El path es /embed/VIDEO_ID
+            var pathParts = uri.AbsolutePath.Split('/');
+            if (pathParts.Length >= 3)
+                videoId = pathParts[2];
+        }
         // Si es un link normal de YouTube
-        var videoId = "";
-        if (url.Contains("youtube.com/watch"))
+        else if (url.Contains("youtube.com/watch"))
         {
             var uri = new Uri(url);
             var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
             videoId = query["v"];
         }
+        // Si es un link corto de YouTube
         else if (url.Contains("youtu.be/"))
         {
-            var parts = url.Split('/');
-            videoId = parts.Last();
+            var uri = new Uri(url);
+            // El path es /VIDEO_ID
+            var pathParts = uri.AbsolutePath.Split('/');
+            if (pathParts.Length >= 2)
+                videoId = pathParts[1];
         }
 
         if (!string.IsNullOrEmpty(videoId))

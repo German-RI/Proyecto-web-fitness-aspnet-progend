@@ -41,7 +41,7 @@ public class SeleccionRecetas : Controller
             .OrderByDescending(d => d.RecordDate)
             .FirstOrDefaultAsync(d => d.UserId == user.Id);
 
-        var recomendadosQuery = Enumerable.Empty<Recetas>().AsQueryable();
+        var recomendadosQuery = _context.Recetas.Where(r => false);
         if (userDatos == null || userDatos.CaloriasConsumidas == 0)
         { // Recomendaciones básicas si no hay consumo registrado
             recomendadosQuery = _context.Recetas

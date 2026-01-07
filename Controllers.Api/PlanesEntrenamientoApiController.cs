@@ -34,7 +34,7 @@ public class PlanesEntrenamientoApiController : ControllerBase
             .OrderByDescending(d => d.RecordDate)
             .FirstOrDefaultAsync(d => d.UserId == user.Id);
 
-        var recomendadosQuery = Enumerable.Empty<PlanEntranamiento>().AsQueryable();
+        var recomendadosQuery = _context.PlanEntranamiento.Where(p => false);
         if (userDatos != null)
         {
             var edad = userDatos.RecordDate.Year - user.FechaNacimiento.Year;
